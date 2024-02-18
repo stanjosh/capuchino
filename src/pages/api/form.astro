@@ -1,0 +1,23 @@
+---
+
+let formData;
+
+if ( Astro.request.method === 'POST' ) {
+  formData = await Astro.request.formData();
+  
+  
+  console.log(formData.get('name'));
+  Astro.response.status = 201;
+ 
+} else {
+  Astro.response.status = 405;
+ 
+}
+
+export const partial = true;
+---
+
+
+<div>
+  { formData }
+</div>

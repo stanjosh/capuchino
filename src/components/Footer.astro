@@ -1,15 +1,10 @@
 ---
-
+export const partial = true;
 const contacts = [
   {
     name: "email",
     url: "",
     image: "/images/socials/email.svg",
-  },
-  {
-    name: "linkedin",
-    url: "",
-    image: "/images/socials/linkedin.svg",
   },
   {
     name: "facebook",
@@ -21,18 +16,16 @@ const contacts = [
     url: "",
     image: "/images/socials/insta.svg",
   },
+  {
+    name: "yelp",
+    url: "",
+    image: "/images/socials/yelp.svg",
+  },
 
 ];
-
-
-const { title } = Astro.props
-export const partial = true;
-
 ---
 
-
 <footer>
-    { title }
     <div class="socials">
         
         {contacts.map((item) => (
@@ -44,37 +37,40 @@ export const partial = true;
     
             ))}
         </div>
-    <div>
+
+    <a title="Hound for Hound is trained in pet first aid" href="https://www.pettech.net" target="_blank">
+      <img src="/images/logo-pettech.jpg" alt="Pet Tech pet first aid for cats and dogs" width="194" height="55">
+    </a>
+    <a href="https://www.petsitllc.com/" target="_blank">
+      <img src="/images/logo-psa.jpg" alt="Pet Sitters Associates, pet sitting insurance" width="155" height="75">
+    </a>
+    <a href="https://www.petsitusa.com" target="_blank">
+      <img src="/images/logo-petsitusa.jpg" alt="Pet sitter directory, pet sitters, pet sitting" width="122" height="65">
+    </a>
+    <a href="https://www.austinpetsitters.org" target="_blank">
+      <img src="/images/logo-apso.jpg" alt="Austin Pet Sitters Organization" width="104" height="75">
+    </a>
+    
+
 </footer>
 
 <style>
     footer {
-        display: flex;
-        align-items: center;
-        background: #f0f0f0;
-        padding: 0 20px;
-        text-align: center;
-        position: sticky;
-        bottom: 0;
-        width: 100%;
-        
-    }
-
-    .socials {
-
-        flex: 1;
-        display: flex;
-        justify-content: end;
-    }
-
+		display: flex;
+        flex-wrap: wrap;
+		justify-content: space-around;
+		align-items: center;
+		margin: 0 auto;
+		padding: 1rem;
+		max-width: 800px;
+		background: var(--accent-gradient);
+	}
     .social div {
-        
-        min-height: 32px;
-        min-width: 32px;
+        min-height: 48px;
+        min-width: 48px;
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-
         margin: 1cqw;
         border-radius: 5px;
         transition: all 0.2s ease-in-out;
@@ -82,15 +78,14 @@ export const partial = true;
 
     .social div:hover {
         transform: scale(1.2);
-
     }
 
     .socials {
         display: flex;
-        flex-wrap: wrap;
-
+        width: 100%;
+        justify-content: space-around;
         max-height: min-content;
-
         align-items: center;
+        padding: 1rem;
     }
 </style>

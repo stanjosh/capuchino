@@ -1,9 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import MainContent from '../partials/MainContent.astro';
-import ContentBlock from '../partials/ContentBlock.astro';
+import MainContent from './partials/MainContent.astro';
+import ContentBlock from '../components/ContentBlock.astro';
 
 
 
@@ -11,26 +9,82 @@ import ContentBlock from '../partials/ContentBlock.astro';
 ---
 
 <Layout>
-	<Header title="Company Inc."/>
+
 	<MainContent>
+	<div style="text-align: center;">
+		<img src="/images/austin-pet-sitter.png" style="max-width: 100%"/>
+		<h1>Austin Pet Sitting and Dog Walking</h1>
+		<h5>Call or Text - 512-971-4388</h5>
+		<h4>One Free Walk or Petsit for New Clients!</h4>
+	</div>
 		<ContentBlock>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque rem blanditiis nobis, cumque, dicta pariatur tempore est maiores quos fuga sint nesciunt nemo distinctio nisi ratione officiis facilis! Nesciunt laborum sequi similique, fugiat ipsa est sit aperiam assumenda expedita necessitatibus.
+			<h2>We offer pet sitting and dog walking in Austin, Texas.</h2>
+			<p>
+				<strong>Your pets are your family.</strong> We understand that. That’s certainly how we feel about our pets as well! And, with that in mind, we pledge to give you the best care possible for your pets. You’ll be supporting a local business when choosing H4H. Check out our yelp link above for our reviews.
+			</p>
+			<p>
+				Whether you’re going to be out of town on vacation, or need us to walk your dog during the day while you’re at work, your pets will be in good hands with Hound for Hound. We are insured, bonded, trained in pet first aid & CPR, and able to provide excellent references.
+			</p>
+		</ContentBlock>
+	<div>
+		<img style="display: block; float:right; max-width: 30%" src="/images/big-dog.jpg" width="300">
+		<ContentBlock>
+			
+			<h2>Dog walking or hiking</h2>
+			<p>
+				
+				We’re available for walks around the neighborhood or the nearest park. We’ll make sure your dog gets some great exercise and has some fun along the way.
+				
+			</p>
+
 		</ContentBlock>
 
 		<ContentBlock>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, cum enim unde reprehenderit nemo impedit laboriosam qui sint maxime nesciunt?
+			<h2>Pet Sitting in your home</h2>
+			<p>
+				
+				If you’re going to be out of town, our in-home pet sitting services will keep your cat, dog, and other small pets happy, healthy, and ready to greet you when you return home.
+			</p>
+			<p>
+				While we're there caring for your pets, we will also be happy to bring in the mail and newspapers, water indoor and outdoor plants, change the lighting, take out the trash, and other small tasks to keep your home nice and vibrant while you're away!
+			</p>
+		</ContentBlock>
+		
+	</div>
+		<ContentBlock>
+			
+			<h2>About Hound for Hound</h2>
+
+			<p>
+				<img style="display: block; float:left; max-width: 30%" src="/images/matt1.jpg" width="300">
+				Hi, my name is Matt Myers, owner of Hound for Hound Dog Walking in Austin, Texas.
+				I grew up in Ohio taking care of several dogs and cats. I left Ohio to go to college in Boston. That was a dog free period that I try to forget- haha. My wife and I got two dogs, Sam and Brewer, from a local animal shelter when we moved to Austin. Before long, my spare time became happily devoted to the pups. I even put my banjo in the closet. These guys have walked all over Texas since. Soon after, Hound for Hound was born and we aim to keep those tails waggin’!
+				We’re CPR certified and insured. Your pets will get the best of care while we are watching over them. When you choose us you’ll be choosing a local and independent Austin business since 2010!
+			</p>
+
 		</ContentBlock>
 
-		<ContentBlock>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque rem blanditiis nobis, cumque, dicta pariatur tempore est maiores quos fuga sint nesciunt nemo distinctio nisi ratione officiis facilis! Nesciunt laborum sequi similique, fugiat ipsa est sit aperiam assumenda expedita necessitatibus.
-		</ContentBlock>
-
-		<ContentBlock>
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex velit accusamus nulla, consequuntur optio quo odio, corporis repellendus itaque enim aut saepe, maxime dolorum magnam totam suscipit cum facilis cumque architecto inventore aperiam atque qui!
-		</ContentBlock>
+		
 
 	</MainContent>
-	<Footer title="Company Inc."/>
+
 </Layout>
 
+<style>
+	p {
+        margin: 15px 0;
+        padding: 5px;
+
+    }
+
+	img {
+		margin: 15px 0;
+		padding: 5px;
+	}
+
+    p::before {
+        content: " ";
+        margin-right: 0.5em;
+    }
+</style>
 

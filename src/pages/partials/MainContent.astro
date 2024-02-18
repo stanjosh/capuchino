@@ -1,0 +1,40 @@
+---
+
+export const partial = true;
+
+---
+
+<main id="main-content">
+
+        <slot />
+
+</main>
+
+<style is:global>
+	main {
+        font-family: 'Fredoka', sans-serif;
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction: column;
+		justify-content: start;
+		margin: 0 auto;
+		width: 100%;
+		max-width: 1000px;
+		font-size: 20px;
+		line-height: 1.6;
+	}
+
+	.yelp-reviews {
+        font-family: 'Fredoka', sans-serif;
+		display: flex;
+		flex-wrap: nowrap;
+		justify-content: center;
+		min-height: 100vh;
+		width: 100%;
+		max-width: 800px;
+		margin: 0 auto;
+
+		font-size: 20px;
+		line-height: 1.6;
+	}
+</style>
