@@ -1,0 +1,53 @@
+---
+import type { CustomerData } from "../../lib/forms";
+
+
+const { data } = Astro.props
+
+export const partial=true;
+---
+
+
+
+
+<table>
+    <tbody>
+        <tr>
+            <th>First Name</th>
+            <th>Cell Phone</th>
+            <th>Email</th>
+            <th>Address</th>
+        </tr>
+
+    { data.map((rowData: CustomerData) => (
+        <tr>
+            <td>{ rowData.name }</td>
+            <td>{ rowData.cellPhone }</td>
+            <td>{ rowData.email }</td>
+            <td>{ rowData.address }</td>
+        </tr>
+    ))
+
+    </tbody>
+</table>
+
+
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #bfbfbf;
+    }    
+</style>
+
+
+../../services/forms

@@ -1,14 +1,22 @@
 ---
 
-let formData;
+import { createCustomer } from '../../lib/forms.ts'
+
+
+let customer;
+
 
 if ( Astro.request.method === 'POST' ) {
-  formData = await Astro.request.formData();
-  
-  
-  console.log(formData.get('name'));
-  Astro.response.status = 201;
- 
+  const formData = await Astro.request.formData()
+  const data: Record<string, string | boolean > = {}
+  for (const [key, value] of formData.entries() as unknown as [string, string][]  ) {
+    if (value === 'on') data[key] = true
+    else data[key] = value
+    
+  }
+  customer = await createCustomer(data)
+  console.log(customer)
+
 } else {
   Astro.response.status = 405;
  
@@ -19,5 +27,13 @@ export const partial = true;
 
 
 <div>
-  { formData }
-</div>
+  { customer ? 
+    <div>
+      <h1>Customer Created</hjson>
+      <p>{customer.name}</p>
+      <p>{customer.email}</p>
+      <p>{customer.phone}</p>
+    </div>
+    :
+    <h1>Customer not created</h1>
+</div>../../services/forms.ts
