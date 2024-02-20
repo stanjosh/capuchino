@@ -1,0 +1,85 @@
+---
+
+let formData = {
+    address: '',
+    leashCarrierCrate: '',
+    petFoodWaterBowlTreats: '',
+    cleaningSuppliesVacuum: '',
+    thermostat: '',
+    breakerBox: '',
+    alarmPanel: '',
+    other: '',
+    personsAccess: "",
+
+} as any;
+
+
+export const partial = true;
+---
+
+
+<form hx-post="/api/location" >
+    <div>
+        <h3>Item Whereabouts:</h3>
+        <div>
+
+            <div class="form-floating mb-3">
+                <input type="text" id="address" class="form-control" name="address" autocomplete="address" placeholder="Address" value={formData.address}>
+                <label for="address">Address</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="text" id="leashCarrierCrate" class="form-control" name="leashCarrierCrate" autocomplete="off" placeholder="Leash/Carrier/Crate" value={formData.leashCarrierCrate}>
+                <label for="leashCarrierCrate">Leash/Carrier/Crate</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="text" id="petFoodWaterBowlTreats" class="form-control" name="petFoodWaterBowlTreats" autocomplete="off" placeholder="Pet Food/Water Bowl/Treats" value={formData.petFoodWaterBowlTreats}>
+                <label for="petFoodWaterBowlTreats">Pet Food/Water Bowl/Treats</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="text" id="cleaningSuppliesVacuum" class="form-control" name="cleaningSuppliesVacuum" autocomplete="off" placeholder="Cleaning Supplies/Vacuum" value={formData.cleaningSuppliesVacuum}>
+                <label for="cleaningSuppliesVacuum">Cleaning Supplies/Vacuum</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="text" id="thermostat" name="thermostat" class="form-control" autocomplete="off" placeholder="Thermostat" value={formData.thermostat}>
+                <label for="thermostat">Thermostat</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="text" id="breakerBox" name="breakerBox" class="form-control" autocomplete="off" placeholder="Breaker Box" value={formData.breakerBox}>
+                <label for="breakerBox">Breaker Box</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="text" id="alarmPanel" name="alarmPanel" class="form-control" autocomplete="off" placeholder="Alarm Panel" value={formData.alarmPanel}>
+                <label for="alarmPanel">Alarm Panel</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="text" id="other" name="other" class="form-control" autocomplete="off" placeholder="Other" value={formData.other}>
+                <label for="other">Other</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="text" id="personsAccess" class="form-control" name="personsAccess" autocomplete="name" placeholder="Persons with access to your home" value={formData.personsAccess}>
+                <label for="personsAccess">Persons with access to this location</label>
+            </div>
+
+        </div>
+    </div>
+
+    <div style="width: 100%; display: flex; justify-content: end; padding: 10px">    
+        <button 
+            type="submit" 
+            hx-disabled-elt="this"
+            class="btn btn-success"
+            >submit
+        </button>
+    </div>
+
+</form>
+
+

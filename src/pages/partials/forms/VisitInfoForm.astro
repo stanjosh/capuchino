@@ -1,0 +1,104 @@
+---
+
+let formData = {
+    mail: false,
+    waterPlants: false,
+    alternateLights: false,
+    openCloseCurtains: false,
+    garbageRecycle: false,
+    tvRadioOn: false,
+    instructions: ""
+} as any;
+
+export const partial = true;
+---
+<form hx-post="/api/visit">
+<div>
+    <h3>On Visit:</h3>
+
+
+
+    <div>
+        <div style="flex: 0 1 50%">
+            
+
+            <input 
+                type="checkbox"
+                class="btn-check" 
+                id="mail" 
+                name="mail" 
+                value={formData.mail}
+            >
+            <label for="mail" class="btn">Mail / Newspapers / Packages</label>
+
+            <input 
+                type="checkbox"
+                class="btn-check" 
+                id="waterPlants" 
+                name="waterPlants" 
+                value={formData.waterPlants}
+            >
+            <label for="waterPlants" class="btn" >Water Plants</label>
+
+            <input 
+                type="checkbox"
+                class="btn-check" 
+                id="alternateLights"
+                name="alternateLights"
+                value={formData.alternateLights}
+            >
+
+            <label for="alternateLights" class="btn">Alternate Lights</label>
+
+
+
+            <input 
+                type="checkbox"
+                class="btn-check" 
+                id="openCloseCurtains"
+                name="openCloseCurtains"
+                value={formData.openCloseCurtains}
+            >
+            <label for="openCloseCurtains" class="btn">Open/Close Curtains</label>
+
+
+            <input 
+                type="checkbox"
+                class="btn-check"
+                id="garbageRecycle"
+                name="garbageRecycle"
+                value={formData.garbageRecycle}
+            >
+            <label for="garbageRecycle" class="btn">Garbage/Recycle</label>
+
+            <input 
+                type="checkbox"
+                class="btn-check"
+                id="tvRadioOn"
+                name="tvRadioOn"
+                value={formData.tvRadioOn}
+            >
+            <label for="tvRadioOn" class="btn">TV/Radio on</label>
+
+        </div>
+
+        <div id="instructions-container">
+
+            <label for="instructions" class="form-label">Instructions</label>
+            <textarea id="instructions" class="form-control" name="instructions" rows="6" value={formData.instructions}></textarea>
+        
+        </div>
+
+    </div>
+
+    <div style="width: 100%; display: flex; justify-content: end; padding: 10px">    
+        <button 
+            type="submit" 
+            hx-disabled-elt="this"
+            class="btn btn-success"
+            >submit
+        </button>
+    </div>
+
+</form>
+

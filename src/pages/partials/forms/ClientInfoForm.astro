@@ -1,0 +1,51 @@
+---
+
+let formData = {
+    name: "",
+    phone: "",
+    email: "",
+    emergencyContact: "",
+
+} as any;
+
+export const partial = true
+---
+<form hx-post="/api/form">
+    <div>
+    <h3>Owner Information:</h3>
+        <div>
+
+            <div class="form-floating mb-3">
+                <input type="text" id="name" name="name" class="form-control" autocomplete="name" placeholder="name" value={formData.name}>
+                <label for="name">Name</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="tel" id="phone" name="phone" class="form-control" autocomplete="tel" placeholder="Cell Phone" value={formData.phone}>
+                <label for="phone">Cell Phone</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="email" id="email" name="email" class="form-control" autocomplete="email" placeholder="Email Address" value={formData.email}>
+                <label for="email">Email Address</label>
+            </div>
+
+            <div class="form-floating">
+                <input type="text" id="emergencyContact" name="emergencyContact" class="form-control" placeholder="Emergency Contact" value={formData.emergencyContact}>
+                <label for="emergencyContact">Emergency Contact</label>
+            </div>
+
+        </div>
+    </div>
+
+    <div style="width: 100%; display: flex; justify-content: end; padding: 10px">    
+        <button 
+            type="submit" 
+            hx-disabled-elt="this"
+            class="btn btn-success"
+            >submit
+        </button>
+    </div>
+
+</form>
+
