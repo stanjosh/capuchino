@@ -3,7 +3,7 @@
 const { pets } = Astro.props;
 ---
 
-<div>
+<div class="pets">
 { pets.map((petData: any, index: number) => 
 
     <button class="pet-icon btn" data-bs-toggle="modal" data-bs-target={`#petModal${index}`}>
@@ -37,7 +37,7 @@ const { pets } = Astro.props;
 
 <style>
     .pet-icon {
-        width: 100%;
+        
         padding: 10px;
         margin: 2px;
         display: flex;
@@ -49,6 +49,11 @@ const { pets } = Astro.props;
         width: 30px;
         height: 30px;
         
+    }
+    .pets {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
 </style>
