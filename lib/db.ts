@@ -1,5 +1,5 @@
 import connectMongo from "./mongoose";
-import { Visit, Location, User, Pet } from "./models/index";
+import { Visit, Location, User } from "./models/index";
 
 
 
