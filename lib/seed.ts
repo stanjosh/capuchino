@@ -1,6 +1,7 @@
-import { Location, Pet, Visit } from './models/index.js';
+import { Location, Visit, User } from './models/index.js';
 import { Types } from 'mongoose';
 import connectMongo from './mongoose.js';
+
 
 type objectIdsListType = {
     [key: string]: Types.ObjectId;
@@ -12,30 +13,35 @@ const mapObjectIds = (key: string) => {
     if (!objectIdsList[key]) {
         objectIdsList[key] = new Types.ObjectId();
     }
-    return objectIdsList[key];
+    return objectIdsList[key]?.toString();
 };
 
 
-const fakeUserId = {
-    _id: new Types.ObjectId(),
-    username: 'test',
-    email: '',
-    password: 'password'
-};
+const fakeUserData = [{
+    _id: mapObjectIds('user1'),
+    name: 'test',
+    phone: '555-1212',
+    email: '123twerk@gmail.com',
+    password: 'password',
+    locations: [mapObjectIds('location3')]
+},
 
-const fakeUserId2 = {
-    _id: new Types.ObjectId(),
-    username: 'test2',
-    email: '',
-    password: 'password'
-};
+{
+    _id: mapObjectIds('user2'),
+    name: 'test2',
+    phone: '555-1212',
+    email: '321kirk@gmail.com',
+    password: 'password',
+    locations: [mapObjectIds('location1'), mapObjectIds('location2')]
+}];
+
+
 
 
 
 const locationData = [
    {
-        userId: fakeUserId._id,
-        pets: [mapObjectIds('pet1')],
+         _id: mapObjectIds('location1'),
         name: 'home',
         itemLocations: {
             breakerBox: 'basement',
@@ -45,12 +51,24 @@ const locationData = [
             thermostat: 'living room',
             alarmPanel: 'hallway',
             other: 'garage'
-        }
+        },
+        emergentContact: '555-1212',
+        pets: [
+            {
+                name: 'spot',
+                description: 'white dog'
+            },
+            {
+                name: 'fluffy',
+                cat: true,
+                description: 'white cat'
+            }
+        ],
     },
+
     {
-        userId: fakeUserId2._id,
-        pets: [mapObjectIds('pet2')],
-        name: 'home2',
+        _id: mapObjectIds('location2'),
+        name: 'office',
         itemLocations: {
             breakerBox: 'basement',
             leashCarrierCrate: 'mudroom',
@@ -59,39 +77,52 @@ const locationData = [
             thermostat: 'living room',
             alarmPanel: 'hallway',
             other: 'garage'
-        }
+        },
+        pets: [
+            {
+                name: 'fido',
+                description: 'brown shaggy dog'
+            },
+            {
+                name: 'mittens',
+                cat: true,
+                description: 'black cat'
+            }
+        ]
+   },
+   {
+     _id: mapObjectIds('location3'),
+     name: 'airport',
+        itemLocations: {
+        breakerBox: 'basement',
+        leashCarrierCrate: 'mudroom',
+        petFoodWaterBowlTreats: 'kitchen',
+        cleaningSuppliesVacuum: 'closet',
+        thermostat: 'living room',
+        alarmPanel: 'hallway',
+        other: 'garage'
+        },
+        pets: [
+            {
+                name: 'chimi',
+                description: 'chiuahua'
+            },
+            {
+                name: 'boots',
+                cat: true,
+                description: 'spotted cat'
+            }
+        ]
    }
 
 ];
 
-const petData = [
-    {
-        userId: fakeUserId._id,
-        name: 'Fido',
-        description: 'dog'
-    },
-    {
-        userId: fakeUserId._id,
-        name: 'Fluffy',
-        description: 'cat'
-    
-    },
-    {
-        userId: fakeUserId2._id,
-        name: 'Fido2',
-        description: 'dog'
-    },
-    {
-        userId: fakeUserId2._id,
-        name: 'Fluffy2',
-        description: 'cat'
-    }
-];
+
 
 const visitData = [
     {
-        userId: fakeUserId._id,
         location: mapObjectIds('location1'),
+        user: mapObjectIds('user1'),
         times: [new Date()],
         tasks: {
             mail: true,
@@ -103,14 +134,14 @@ const visitData = [
         }
     },
     {
-        userId: fakeUserId2._id,
         location: mapObjectIds('location2'),
+        user: mapObjectIds('user2'),
         times: [new Date()],
         tasks: {
             mail: true,
             waterPlants: true,
             alternateLights: true,
-            openCloseCurtains: true,
+            openCloseCurtains: false,
             garbageRecycle: true,
             tvRadioOn: true
         }
@@ -121,10 +152,10 @@ const visitData = [
 
 const seed = async () => {
     await connectMongo();
+    await User.deleteMany({});
+    await User.insertMany(fakeUserData);
     await Location.deleteMany({});
     await Location.insertMany(locationData);
-    await Pet.deleteMany({});
-    await Pet.insertMany(petData);
     await Visit.deleteMany({});
     await Visit.insertMany(visitData);
     console.log('seeded');

@@ -1,14 +1,26 @@
 ---
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+
+
+
+type Props = {
+  active: string;
+};
+
+const { active } = Astro.props;
 
 export const partial = true;
-
 ---
 
+<Header active={ active }/>
+
 <main id="main-content">
-
         <slot />
-
 </main>
+
+<Footer />
+
 
 <style is:global>
 	main {

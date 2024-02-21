@@ -71,6 +71,12 @@ const db = {
             return userData;
         },
 
+        getAll: async () => {
+            await connectMongo();
+            const userData =  await User.find();
+            return userData;
+        },
+
         updateUser: async (id: string, userData: any) => {
             await connectMongo();
             const updatedUserData =  await User.findByIdAndUpdate(id, userData, {new: true})

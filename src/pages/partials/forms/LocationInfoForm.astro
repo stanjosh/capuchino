@@ -1,16 +1,18 @@
 ---
 
-let formData = {
-    address: '',
-    leashCarrierCrate: '',
-    petFoodWaterBowlTreats: '',
-    cleaningSuppliesVacuum: '',
-    thermostat: '',
-    breakerBox: '',
-    alarmPanel: '',
-    other: '',
-    personsAccess: "",
+const { locationData } = Astro.props;
 
+let formData = {
+    address: locationData?.address || '',
+    leashCarrierCrate: locationData?.itemLocations?.leashCarrierCrate || '',
+    petFoodWaterBowlTreats: locationData?.itemLocations?.petFoodWaterBowlTreats || '',
+    cleaningSuppliesVacuum: locationData?.itemLocations?.cleaningSuppliesVacuum || '',
+    thermostat: locationData?.itemLocations?.thermostat || '',
+    breakerBox: locationData?.itemLocations?.breakerBox || '',
+    alarmPanel: locationData?.itemLocations?.alarmPanel || '',
+    other: locationData?.itemLocations?.other || '',
+    personsAccess: locationData?.personsAccess || '',
+    emergencyContact: locationData?.emergencyContact || '',
 } as any;
 
 
@@ -20,14 +22,24 @@ export const partial = true;
 
 <form hx-post="/api/location" >
     <div>
-        <h3>Item Whereabouts:</h3>
+
         <div>
 
-            <div class="form-floating mb-3">
+            <div class="form-floating mb-1">
                 <input type="text" id="address" class="form-control" name="address" autocomplete="address" placeholder="Address" value={formData.address}>
                 <label for="address">Address</label>
             </div>
+            <div class="form-floating mb-1">
+                <input type="text" id="personsAccess" class="form-control" name="personsAccess" autocomplete="name" placeholder="Persons with access to your home" value={formData.personsAccess}>
+                <label for="personsAccess">Persons with access to this location</label>
+            </div>
+            <div class="form-floating mb-1">
+                <input type="text" id="emergencyContact" name="emergencyContact" class="form-control" placeholder="Emergency Contact" value={formData.emergencyContact}>
+                <label for="emergencyContact">Emergency Contact</label>
+            </div>
 
+            <h3>Item Whereabouts:</h3>
+            
             <div class="form-floating mb-3">
                 <input type="text" id="leashCarrierCrate" class="form-control" name="leashCarrierCrate" autocomplete="off" placeholder="Leash/Carrier/Crate" value={formData.leashCarrierCrate}>
                 <label for="leashCarrierCrate">Leash/Carrier/Crate</label>
@@ -63,10 +75,9 @@ export const partial = true;
                 <label for="other">Other</label>
             </div>
 
-            <div class="form-floating mb-3">
-                <input type="text" id="personsAccess" class="form-control" name="personsAccess" autocomplete="name" placeholder="Persons with access to your home" value={formData.personsAccess}>
-                <label for="personsAccess">Persons with access to this location</label>
-            </div>
+
+
+
 
         </div>
     </div>
@@ -76,7 +87,7 @@ export const partial = true;
             type="submit" 
             hx-disabled-elt="this"
             class="btn btn-success"
-            >submit
+            >save
         </button>
     </div>
 

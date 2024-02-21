@@ -1,10 +1,9 @@
 import mongoose, { Schema, model, type InferSchemaType } from 'mongoose';
-
 import autopopulate from 'mongoose-autopopulate';
 import bcrypt from 'bcrypt';
 
 const userSchema = new Schema({
-    username:{
+    name:{
       type: String,
       unique: true,
       required: false,
@@ -14,10 +13,7 @@ const userSchema = new Schema({
       unique: true,
       required: true,
     },
-    emergencyContact:{
-      type: String,
-      required: true,
-    },
+
     email:{
       type: String,
       required: true,
@@ -27,35 +23,27 @@ const userSchema = new Schema({
       type: String,
       required: true,
     },
-    pets: [{
-      type: mongoose.Types.ObjectId,
-      ref: 'Pet',
-      autopopulate: true
-    }],
     locations: [{
-      type: mongoose.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: 'Location',
-      autopopulate: true
+      autopopulate: true,
     }],
-    
   },
 );
 
 userSchema.pre('save', async function (next) {
   if (this.isNew || this.isModified('password')) {
-    const saltRounds = 10; // salt isn't round 
+    const saltRounds = 10;
     this.password = await bcrypt.hash(this.password, saltRounds);
   }
   next();
 });
-
 
 userSchema.methods.isCorrectPassword = async function (password: string) {
   return bcrypt.compare(password, this.password);
 };
 
 userSchema.plugin(autopopulate);
-
 
 type User = InferSchemaType<typeof userSchema>;
 

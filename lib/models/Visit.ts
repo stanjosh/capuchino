@@ -1,18 +1,18 @@
 import mongoose, { Schema, model, type InferSchemaType } from 'mongoose';
-
 import autopopulate from 'mongoose-autopopulate';
 
 const visitSchema = new Schema({
-    userId: {
-        type: mongoose.Types.ObjectId,
+    location: {
+        type: Schema.Types.ObjectId,
+        ref: 'Location',
+        required: true,
+        autopopulate: true,
+    },
+    user: {
+        type: Schema.Types.ObjectId,
         ref: 'User',
         required: true,
-        autopopulate: true
-    },
-    location: {
-        type: mongoose.Types.ObjectId,
-        ref: 'Location',
-        autopopulate: true
+        autopopulate: true,
     },
     times: [{
         type: Date,
@@ -27,8 +27,6 @@ const visitSchema = new Schema({
         tvRadioOn: {type: Boolean},
     },
 });
-
-
 
 visitSchema.plugin(autopopulate);
 

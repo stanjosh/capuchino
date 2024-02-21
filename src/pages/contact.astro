@@ -4,18 +4,35 @@ import MainContent from './partials/MainContent.astro'
 
 ---
 
-<Layout active="Contact">
-    <MainContent>
+<Layout>
+    <MainContent active="Contact">
         <div>
 
         <form hx-post="/api/contact">
-            <label for ="name">Name</label>
-            <input type="text" id="name" name="name" placeholder="Name" required>
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="Email" required>
-            <label for="message">Message</label>
-            <textarea id="message" name="message"></textarea>
-            <button id="submit" type="submit">Send</button>
+            <div class="form-floating">
+                <input type="text" id="name" class="form-control" name="name" placeholder="Name" required>
+                <label for="name">Name</label>
+            </div>
+           
+            
+            <div class="form-floating">
+                <input type="email" id="email" class="form-control" name="email" placeholder="Email" required>    
+                <label for="email">Email</label>
+            </div>
+            <div class="form-floating">
+                <textarea id="message"  name="message" class="form-control" placeholder="Message" rows="4" required></textarea>
+                <label for="message">Message</label>
+            </div>
+
+            <div style="width: 100%; display: flex; justify-content: end; padding: 10px">    
+                <button 
+                    type="submit" 
+                    hx-disabled-elt="this"
+                    class="btn btn-success"
+                    >submit
+                </button>
+            </div>
+
         </form>
 
 

@@ -1,19 +1,24 @@
-<!-- ---
-import Layout from '../layouts/Admin.astro'
-import ClientInfoTable from './partials/ClientInfoTable.astro'
-import { getCustomers } from '../lib/forms'
+---
+import Layout from '../layouts/Layout.astro'
+import CustomerTable from '../components/CustomerTable.astro'
 
-const data = await getCustomers()
+import db from '../../lib/db'
+
+
+const customers = await db.user.getAll();
+
+console.log(customers)
+
 
 ---
+<Layout >
+  <div>
 
+    <h1>Admin</h1>
 
-<Layout title="Admin">
-  <h1>Admin</h1>
+      <p>This is the admin page.</p>
 
-    <p>This is the admin page.</p>
+      <CustomerTable data={customers} />    
 
-    <ClientInfoTable data={data} />
-
+  </div>
 </Layout>
-../services/forms -->

@@ -11,7 +11,6 @@ if (!process.env.MONGODB_URI) {
     process.exit(1);
 }
 
-const global = globalThis as any;
 
 let cached = global.mongoose;
 
