@@ -48,21 +48,6 @@ const db = {
 
     },
 
-    pet: {
-
-        getPet:  async (id: string) => {
-            await connectMongo();
-            const petData =  await Pet.findById(id);
-            return petData;
-            },
-
-        getAll: async () => {
-            await connectMongo();
-            const petData =  await Pet.find();
-            return petData;
-        },
-    },
-
     user: {
 
         getUser: async (id: string) => {
