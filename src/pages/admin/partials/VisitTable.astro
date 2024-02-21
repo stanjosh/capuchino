@@ -1,0 +1,41 @@
+---
+import TasksDisplay from "./TasksDisplay.astro";
+import LocationDisplay from './LocationDisplay.astro'
+
+const { data } = Astro.props
+
+
+export const partial= true;
+
+---
+
+
+
+<div class="locations">
+<table>
+    <tbody>
+        <tr>
+            <th>Time</th>
+            <th>Address</th>
+            <th>Tasks</th>
+            <th>Location</th>
+        </tr>
+
+    { data.map((rowData: any, index1: number) => (
+        <tr>   
+            <td>{ rowData.times?.toLocaleString() }</td>
+            <td>{ rowData.location?.address }</td>
+            <td><TasksDisplay data={ rowData.tasks } visitType={rowData.type} index={index1} /></td>
+            <td><LocationDisplay location={rowData.location} index={index1} /></td>
+        </tr>
+    ))
+
+    </tbody>
+</table>
+
+
+
+</div>
+
+
+

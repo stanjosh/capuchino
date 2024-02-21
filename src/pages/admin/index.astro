@@ -1,0 +1,119 @@
+---
+import Layout from '../../layouts/Layout.astro'
+
+import AdminHeader from '../../components/AdminHeader.astro'
+
+
+
+
+
+
+---
+<Layout >
+  <AdminHeader />
+  <div id="admin-content" hx-get="/admin/partials/Visits" hx-trigger="load" hx-swap="innerHTML">
+
+    
+
+      
+
+  </div>
+  </AdminHeader>
+</Layout>
+
+
+<style is:global>
+    .admin-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        
+    }
+
+    th, td {
+        padding: 8px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+    }
+
+    tr:nth-child(odd) {
+        background-color: aquamarine;
+    }
+
+    .pet-icon {
+        flex: 0 1 55px;
+        min-width: 30px;
+        
+        margin: 2px;
+        display: flex;
+        align-items: center;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+
+    .pet-icon-img {
+        width: 30px;
+        height: 30px;
+        
+    }
+    .pets {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .locations {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .location {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 5px 0;
+    max-width: max-content;
+  }
+
+  .list-group {
+    width: 100%;
+    list-style-type: none;
+    text-align: right;
+  }
+
+  .list-group li {
+    vertical-align: middle;
+    width: 100%;
+  }
+
+  .list-group input[type="checkbox"] {
+    vertical-align: middle;
+    margin: 10px;
+    width: 30px;
+    height: 30px;
+  }
+
+
+  .locButton {
+    padding: 10px;
+    background-color: #ffffff7f;
+    flex: 1;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+
+</style>

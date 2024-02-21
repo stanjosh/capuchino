@@ -29,7 +29,7 @@ const fakeUserData = [{
 {
     _id: mapObjectIds('user2'),
     name: 'test2',
-    phone: '555-1212',
+    phone: '555-1222',
     email: '321kirk@gmail.com',
     password: 'password',
     locations: [mapObjectIds('location1'), mapObjectIds('location2')]
@@ -42,7 +42,9 @@ const fakeUserData = [{
 const locationData = [
    {
          _id: mapObjectIds('location1'),
-        name: 'home',
+        user: mapObjectIds('user1'),
+        address: '123 main st',
+        emergenctContact: 'jim 555-2313',
         itemLocations: {
             breakerBox: 'basement',
             leashCarrierCrate: 'mudroom',
@@ -57,24 +59,21 @@ const locationData = [
             {
                 name: 'spot',
                 description: 'white dog'
-            },
-            {
-                name: 'fluffy',
-                cat: true,
-                description: 'white cat'
             }
         ],
     },
 
     {
         _id: mapObjectIds('location2'),
-        name: 'office',
+        user: mapObjectIds('user2'),
+        address: '133 main st',
+        emergenctContact: '555-1313',
         itemLocations: {
-            breakerBox: 'basement',
+            breakerBox: 'inaccessible',
             leashCarrierCrate: 'mudroom',
             petFoodWaterBowlTreats: 'kitchen',
             cleaningSuppliesVacuum: 'closet',
-            thermostat: 'living room',
+            thermostat: 'inaccessible',
             alarmPanel: 'hallway',
             other: 'garage'
         },
@@ -87,25 +86,32 @@ const locationData = [
                 name: 'mittens',
                 cat: true,
                 description: 'black cat'
+            },
+            {
+                name: 'fluffy',
+                cat: true,
+                description: 'white cat'
             }
         ]
    },
    {
-     _id: mapObjectIds('location3'),
-     name: 'airport',
+        _id: mapObjectIds('location3'),
+        user: mapObjectIds('user1'),
+        address: '137 main st',
+        emergenctContact: '555-1213',
         itemLocations: {
-        breakerBox: 'basement',
-        leashCarrierCrate: 'mudroom',
-        petFoodWaterBowlTreats: 'kitchen',
-        cleaningSuppliesVacuum: 'closet',
-        thermostat: 'living room',
-        alarmPanel: 'hallway',
-        other: 'garage'
+            breakerBox: 'basement',
+            leashCarrierCrate: 'mudroom',
+            petFoodWaterBowlTreats: 'kitchen',
+            cleaningSuppliesVacuum: 'closet',
+            thermostat: 'living room',
+            alarmPanel: 'hallway',
+            other: 'garage'
         },
         pets: [
             {
                 name: 'chimi',
-                description: 'chiuahua'
+                description: 'shaky old chiuahua'
             },
             {
                 name: 'boots',
@@ -124,6 +130,7 @@ const visitData = [
         location: mapObjectIds('location1'),
         user: mapObjectIds('user1'),
         times: [new Date()],
+        type: '30 minute visit',
         tasks: {
             mail: true,
             waterPlants: true,
@@ -136,6 +143,7 @@ const visitData = [
     {
         location: mapObjectIds('location2'),
         user: mapObjectIds('user2'),
+        type: '15 minute visit',
         times: [new Date()],
         tasks: {
             mail: true,
@@ -143,7 +151,8 @@ const visitData = [
             alternateLights: true,
             openCloseCurtains: false,
             garbageRecycle: true,
-            tvRadioOn: true
+            tvRadioOn: true,
+            other: "feed fish"
         }
     }
     ];

@@ -1,0 +1,39 @@
+---
+const { active } = Astro.props;
+export const partial = true;
+
+
+---
+
+<header>
+
+  <nav class="navbar navbar-expand-md">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/admin">Admin</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class=`nav-link` hx-get="/admin/partials/Users" hx-target="#admin-content" href="#">Users</a>
+          <a class=`nav-link` hx-get="/admin/partials/Visits" hx-target="#admin-content" href="#">Visits</a>
+          <a class=`nav-link` hx-get="/admin/partials/Locations" hx-target="#admin-content" href="#">Locations</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+<style>
+    header {
+        background-color: #81d6c6;
+    
+        margin: 0;
+        padding: 0;
+        margin-bottom: 20px;
+    }
+    
+
+
+</style>

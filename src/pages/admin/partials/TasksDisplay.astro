@@ -1,0 +1,47 @@
+---
+
+const { data, index, visitType } = Astro.props;
+
+export const partial = true;
+
+const checklist = [
+    data?.mail ? { name: 'mail', label: 'Get mail' } : 'null',
+    data?.waterPlants ? { name: 'waterPlants', label: 'Water plants' } : 'null',
+    data?.garbageRecycle ? { name: 'garbageRecycle', label: 'Trash / Recycling' } : 'null',
+    data?.openCloseCurtains ? { name: 'openCloseCurtains', label: 'Open / Close curtains' } : 'null',
+    data?.alternateLights ? { name: 'alternateLights', label: 'Alternate lights' } : 'null',
+    data?.tvRadioOn ? { name: 'tvRadioOn', label: 'Turn on TV / Radio' } : 'null',
+    data?.other ? { name: 'other', label: data.other } : 'null',
+].filter((task) => task != 'null');
+
+
+
+console.log(checklist);
+---
+
+
+<div>
+    <button class="btn btn-info" title="task checklist" data-bs-toggle="modal" data-bs-target={`#taskModal${index}`}>
+        <span style="font-size: 20px">✔️</span>
+    </button>
+</div>
+
+<div class="modal modal-sm fade" id={`taskModal${index}`} aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                Tasks
+            </div>
+            <div class="modal-body">
+                <ul class="list-group">
+                    <li><label for="vist-type">{visitType}<input type="checkbox" id="visit-type"/></label></li>
+                    { checklist.map((task) => <li><label for={task.name}>{task.label}<input type="checkbox" id={task.name}/></label></li> ) }
+                </ul>
+            </div>
+            <div class="modal-footer">
+                
+            </div>
+        </div>
+    </div>
+</div>
+

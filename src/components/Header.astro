@@ -9,15 +9,15 @@ export const partial = true;
 
   <nav class="navbar navbar-expand-md navbar-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Madcap</a>
+      <a class="navbar-brand" href="/">Mad Cap</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class=`nav-link ${active === 'Home' ? 'active' : null }` aria-current="page" href="/">Home</a>
           <a class=`nav-link ${active === 'Contact' ? 'active' : null }` href="/contact">Contact</a>
           <a class=`nav-link ${active === 'Services' ? 'active' : null }` href="/services">Services</a>
+          <a class=`nav-link ${active === 'Area' ? 'active' : null } disabled` aria-disabled="true">Area</a>
           <a class=`nav-link ${active === 'Reviews' ? 'active' : null }` href="/reviews">Reviews</a>
           <a class=`nav-link ${active === 'Gallery' ? 'active' : null } disabled` aria-disabled="true">Gallery</a>
         </div>

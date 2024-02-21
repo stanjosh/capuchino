@@ -1,0 +1,30 @@
+---
+
+export const partial=true;
+
+
+
+---
+
+<h3> 
+    Search Locations 
+    <span class="htmx-indicator"> 
+      <img src="/img/bars.svg"/> Searching... 
+     </span> 
+  </h3>
+  <input class="form-control" 
+    id="search"
+    type="search" 
+    name="search" placeholder="Begin Typing To Search Locations..." 
+    hx-post="/api/locations/search" 
+    hx-trigger="input changed delay:500ms, search" 
+    hx-target="#search-results" 
+    hx-indicator=".htmx-indicator"
+    >
+
+<div id="search-results" hx-get="/api/locations/all" hx-trigger="load" hx-swap="innerHTML">
+
+
+
+
+</div>

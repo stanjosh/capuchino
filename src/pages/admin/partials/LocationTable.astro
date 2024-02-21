@@ -1,0 +1,36 @@
+---
+import LocationDisplay from './LocationDisplay.astro'
+
+const { data } = Astro.props
+
+console.log(data)
+export const partial= true;
+
+---
+
+
+
+<div class="locations">
+<table>
+    <tbody>
+        <tr>
+            <th>Address</th>
+            <th>Location info</th>
+        </tr>
+
+    { data.map((rowData: any, index1: number) => (
+        <tr>   
+            <td>{ rowData?.address }</td>
+            <td><LocationDisplay location={rowData} index={index1} /></td>
+        </tr>
+    ))
+
+    </tbody>
+</table>
+
+
+
+</div>
+
+
+

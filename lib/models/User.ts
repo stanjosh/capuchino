@@ -31,6 +31,13 @@ const userSchema = new Schema({
   },
 );
 
+userSchema.index({
+  name: 'text',
+  email: 'text',
+  phone: 'text',
+});
+
+
 userSchema.pre('save', async function (next) {
   if (this.isNew || this.isModified('password')) {
     const saltRounds = 10;
@@ -44,6 +51,8 @@ userSchema.methods.isCorrectPassword = async function (password: string) {
 };
 
 userSchema.plugin(autopopulate);
+
+
 
 type User = InferSchemaType<typeof userSchema>;
 

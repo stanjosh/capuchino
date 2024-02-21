@@ -14,9 +14,15 @@ const visitSchema = new Schema({
         required: true,
         autopopulate: true,
     },
+    type: {
+        type: String,
+        required: true,
+        
+    },
     times: [{
         type: Date,
-        required: true
+        required: true,
+        index: true,
     }],
     tasks: {
         mail: {type: Boolean},
@@ -26,6 +32,10 @@ const visitSchema = new Schema({
         garbageRecycle: {type: Boolean},
         tvRadioOn: {type: Boolean},
     },
+});
+
+visitSchema.index({
+    times: -1,
 });
 
 visitSchema.plugin(autopopulate);

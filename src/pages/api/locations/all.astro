@@ -1,0 +1,12 @@
+---
+import LocationTable from '../../admin/partials/LocationTable.astro'
+
+import db from '../../../../lib/db'
+
+const locations = await db.location.getAll();
+
+console.log('api' + locations)
+
+---
+<LocationTable data={locations} />
+

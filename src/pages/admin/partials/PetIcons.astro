@@ -1,0 +1,37 @@
+---
+
+const { pets, index } = Astro.props;
+---
+
+<div class="pets">
+{ pets.map((petData: any, index2: number) => 
+
+    <button class="pet-icon btn" title={ `${petData.name}` } data-bs-toggle="modal" data-bs-target={`#petModal${index}${index2}`}>
+        <img 
+            class="pet-icon-img"
+            alt={`icon ${petData.name} : ${petData.description}` } 
+            src={`/images/icons/${petData.cat ? 'cat' : 'dog'}.svg`}
+            style="pointer-events: none;"
+        />
+    </button>
+    <div class="modal modal-sm fade" id={`petModal${index}${index2}`} aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <img 
+                        class="pet-icon-img"
+                        title={ `${petData.name} : ${petData.description}` } 
+                        src={`/images/icons/${petData.cat ? 'cat' : 'dog'}.svg`}
+                        style="pointer-events: none;"
+                    />
+                    {petData.name}
+                </div>
+                <div class="modal-body">
+                    <p class="text-center">{petData.description}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+     ) }
+</div>
+

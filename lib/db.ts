@@ -22,6 +22,12 @@ const db = {
             await connectMongo();
             const newVisitData = await Visit.create(visitData);
             return newVisitData;
+        },
+
+        search: async (searchTerm: string) => {
+            await connectMongo();
+            const visitData =  await Visit.find({$text: {$search: searchTerm}});
+            return visitData;
         }
     },
 
@@ -37,6 +43,7 @@ const db = {
         getAll: async () => {
             await connectMongo();
             const locationData =  await Location.find();
+            console.log('locationData', locationData);
             return locationData;
         },
 
@@ -44,7 +51,14 @@ const db = {
             await connectMongo();
             const newLocationData = await Location.create(locationData);
             return newLocationData;
-        }
+        },
+
+        search: async (searchTerm: string) => {
+            await connectMongo();
+            const locationData =  await Location.find({$text: {$search: searchTerm}});
+            console.log('locationData', locationData);
+            return [...locationData];
+        },
 
     },
 
@@ -66,7 +80,13 @@ const db = {
             await connectMongo();
             const updatedUserData =  await User.findByIdAndUpdate(id, userData, {new: true})
             return updatedUserData;
-        }
+        },
+
+        search: async (searchTerm: string) => {
+            await connectMongo();
+            const userData =  await User.find({$text: {$search: searchTerm}});
+            return userData;
+        },
 
     }
 };

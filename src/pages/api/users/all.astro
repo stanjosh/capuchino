@@ -1,0 +1,10 @@
+---
+import CustomerTable from '../../admin/partials/CustomerTable.astro'
+
+import db from '../../../../lib/db'
+
+const customers = await db.user.getAll();
+
+---
+<CustomerTable data={customers} />
+

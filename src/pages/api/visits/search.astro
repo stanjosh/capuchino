@@ -1,0 +1,14 @@
+---
+import VisitTable from '../../admin/partials/VisitTable.astro'
+
+import db from '../../../../lib/db'
+
+const formData = await Astro.request.formData()
+
+const visits = await db.user.search( formData.get('search') );
+
+console.log(visits)
+
+---
+<VisitTable data={visits} />
+

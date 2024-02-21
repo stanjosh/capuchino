@@ -1,20 +1,23 @@
 import mongoose, { Schema, model, type InferSchemaType } from 'mongoose';
-
+import autopopulate from 'mongoose-autopopulate';
 
 
 const locationSchema = new Schema({
-    name: {
-        type: String,
-        required: true
-    },
     address: {
         type: String,
         required: true,
+
     },
     emergencyContact:{
         type: String,
         required: false,
       },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+        autopopulate: true,
+    },
     itemLocations: {
         breakerBox: {type: String},
         leashCarrierCrate: {type: String},
@@ -39,6 +42,16 @@ const locationSchema = new Schema({
         }
     }],
 });
+
+
+locationSchema.index({
+    address: 'text',
+    emergencyContact: 'text',
+    "pets.name": 'text',
+    "pets.description": 'text',
+});
+
+locationSchema.plugin(autopopulate);
 
 type Location = InferSchemaType<typeof locationSchema>;
 
