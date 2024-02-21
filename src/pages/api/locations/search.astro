@@ -5,7 +5,7 @@ import db from '../../../../lib/db'
 
 const formData = await Astro.request.formData()
 
-const locations = await db.location.search( formData.get('search') );
+const locations = await db.location.search( formData.get('search') as string );
 
 
 

@@ -5,7 +5,7 @@ import db from '../../../../lib/db'
 
 const formData = await Astro.request.formData()
 
-const customers = await db.user.search( formData.get('search') );
+const customers = await db.user.search( formData.get('search') as string );
 
 ---
 <CustomerTable data={customers} />

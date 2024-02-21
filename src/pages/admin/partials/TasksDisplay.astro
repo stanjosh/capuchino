@@ -4,15 +4,31 @@ const { data, index, visitType } = Astro.props;
 
 export const partial = true;
 
-const checklist = [
-    data?.mail ? { name: 'mail', label: 'Get mail' } : 'null',
-    data?.waterPlants ? { name: 'waterPlants', label: 'Water plants' } : 'null',
-    data?.garbageRecycle ? { name: 'garbageRecycle', label: 'Trash / Recycling' } : 'null',
-    data?.openCloseCurtains ? { name: 'openCloseCurtains', label: 'Open / Close curtains' } : 'null',
-    data?.alternateLights ? { name: 'alternateLights', label: 'Alternate lights' } : 'null',
-    data?.tvRadioOn ? { name: 'tvRadioOn', label: 'Turn on TV / Radio' } : 'null',
-    data?.other ? { name: 'other', label: data.other } : 'null',
-].filter((task) => task != 'null');
+type task = {
+    name: string,
+    label: string
+};
+
+const tasknames = { 
+    'mail' : 'Get mail',
+    'waterPlants' : 'Water plants',
+    'garbageRecycle' : 'Trash / Recycling',
+    'openCloseCurtains' : 'Open / Close curtains',
+    'alternateLights' : 'Alternate lights' ,
+    'tvRadioOn' : 'Turn on TV / Radio',
+    'other' : data.other,
+    }
+
+
+const checklist: task[] = 
+    Object.keys(data)
+        .filter(key => key !== 'other')
+        .map(key => ({ name: key, label: tasknames[key] }));
+
+
+
+
+
 
 
 
@@ -35,7 +51,7 @@ console.log(checklist);
             <div class="modal-body">
                 <ul class="list-group">
                     <li><label for="vist-type">{visitType}<input type="checkbox" id="visit-type"/></label></li>
-                    { checklist.map((task) => <li><label for={task.name}>{task.label}<input type="checkbox" id={task.name}/></label></li> ) }
+                    { checklist.map((task: task) => <li><label for={task.name}>{task.label}<input type="checkbox" id={task.name}/></label></li> ) }
                 </ul>
             </div>
             <div class="modal-footer">
