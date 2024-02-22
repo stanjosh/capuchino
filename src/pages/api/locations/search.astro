@@ -1,18 +1,11 @@
 ---
 import LocationTable from '../../admin/partials/LocationTable.astro'
-
 import db from '../../../../lib/db'
-
 const formData = await Astro.request.formData()
-
-const locations = await db.location.search( formData.get('search') as string );
-
+const searchTerm = formData.get('search')?.toString()
 
 
-console.log('api' + locations)
-
+const locations = searchTerm ? await db.location.search( searchTerm as string ) : await db.location.getAll()
 ---
-
-
 <LocationTable data={locations} />
 

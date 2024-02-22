@@ -17,7 +17,8 @@ export const partial= true;
         <tr>
             <th>Time</th>
             <th>Address</th>
-            <th>Tasks</th>
+            <th>Main Task</th>
+            <th>Other Tasks</th>
             <th>Location</th>
         </tr>
 
@@ -25,6 +26,7 @@ export const partial= true;
         <tr>   
             <td>{ rowData.times?.toLocaleString() }</td>
             <td>{ rowData.location?.address }</td>
+            <td>{ rowData.type }</td>
             <td><TasksDisplay data={ rowData.tasks } visitType={rowData.type} index={index1} /></td>
             <td><LocationDisplay location={rowData.location} index={index1} /></td>
         </tr>

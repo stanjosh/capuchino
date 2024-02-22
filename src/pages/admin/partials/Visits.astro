@@ -9,7 +9,7 @@ export const partial=true;
 <h3> 
     Search Visits 
     <span class="htmx-indicator"> 
-      <img src="/img/bars.svg"/> Searching... 
+      <img src="/images/bars.svg" class="loading-indicator"/> Searching... 
      </span> 
   </h3>
   <input class="form-control" 
@@ -22,7 +22,7 @@ export const partial=true;
     hx-indicator=".htmx-indicator"
     >
 
-<div id="search-results" hx-get="/api/visits/all" hx-trigger="load" hx-swap="innerHTML">
+<div id="search-results" hx-post="/api/visits/search" hx-trigger="load" hx-swap="innerHTML">
 
 
 

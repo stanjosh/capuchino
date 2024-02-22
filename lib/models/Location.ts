@@ -31,6 +31,7 @@ const locationSchema = new Schema({
         name: {
             type: String,
             required: true,
+            index: true,
         },
         cat: {
             type: Boolean,
@@ -45,10 +46,7 @@ const locationSchema = new Schema({
 
 
 locationSchema.index({
-    address: 'text',
-    emergencyContact: 'text',
-    "pets.name": 'text',
-    "pets.description": 'text',
+    "$**": "text"
 });
 
 locationSchema.plugin(autopopulate);

@@ -43,7 +43,6 @@ const db = {
         getAll: async () => {
             await connectMongo();
             const locationData =  await Location.find();
-            console.log('locationData', locationData);
             return locationData;
         },
 
