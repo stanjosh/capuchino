@@ -1,100 +1,38 @@
 ---
-
-const { locationData, index } = Astro.props;
+const { data, index } = Astro.props;
 
 let formData = {
-    address: locationData?.address || '',
-    leashCarrierCrate: locationData?.itemLocations?.leashCarrierCrate || '',
-    petFoodWaterBowlTreats: locationData?.itemLocations?.petFoodWaterBowlTreats || '',
-    cleaningSuppliesVacuum: locationData?.itemLocations?.cleaningSuppliesVacuum || '',
-    thermostat: locationData?.itemLocations?.thermostat || '',
-    breakerBox: locationData?.itemLocations?.breakerBox || '',
-    alarmPanel: locationData?.itemLocations?.alarmPanel || '',
-    other: locationData?.itemLocations?.other || '',
-    personsWithAccess: locationData?.personsWithAccess || '',
-    emergencyContact: locationData?.emergencyContact || '',
-    user: locationData?.user || { _id: '' },
-    _id: locationData?._id || '',
+    address: data?.address || '',
+    personsWithAccess: data?.personsWithAccess || '',
+    emergencyContact: data?.emergencyContact || '',
+    user: data?.user || { _id: '' },
+    _id: data?._id || '',
+    
 } as any;
+
+
 
 
 export const partial = true;
 ---
 
-
-<form hx-post="/api/update/location" hx-target={`#locRow${index}`} >
+<div>
     <div>
 
-        <div>
-
-            <div class="form-floating mb-1">
-                <input type="text" id="address" class="form-control" name="address" autocomplete="address" placeholder="Address" value={formData.address}>
-                <label for="address">Address</label>
-            </div>
-            <div class="form-floating mb-1">
-                <input type="text" id="personsWithAccess" class="form-control" name="personsWithAccess" autocomplete="off" placeholder="Persons with access to your home" value={formData.personsWithAccess}>
-                <label for="personsWithAccess">Persons with access to this location</label>
-            </div>
-            <div class="form-floating mb-1">
-                <input type="text" id="emergencyContact" class="form-control" name="emergencyContact"placeholder="Emergency Contact" value={formData.emergencyContact}>
-                <label for="emergencyContact">Emergency Contact</label>
-            </div>
-            <input type="hidden" name="user" value={formData.user?._id.toString()}>
-            <input type="hidden" name="_id" value={formData._id}>
-
-            <h3>Item Whereabouts:</h3>
-            
-            <div class="form-floating mb-3">
-                <input type="text" id="leashCarrierCrate" class="form-control" name="leashCarrierCrate" autocomplete="off" placeholder="Leash/Carrier/Crate" value={formData.leashCarrierCrate}>
-                <label for="leashCarrierCrate">Leash/Carrier/Crate</label>
-            </div>
-
-            <div class="form-floating mb-3">
-                <input type="text" id="petFoodWaterBowlTreats" class="form-control" name="petFoodWaterBowlTreats" autocomplete="off" placeholder="Pet Food/Water Bowl/Treats" value={formData.petFoodWaterBowlTreats}>
-                <label for="petFoodWaterBowlTreats">Pet Food/Water Bowl/Treats</label>
-            </div>
-
-            <div class="form-floating mb-3">
-                <input type="text" id="cleaningSuppliesVacuum" class="form-control" name="cleaningSuppliesVacuum" autocomplete="off" placeholder="Cleaning Supplies/Vacuum" value={formData.cleaningSuppliesVacuum}>
-                <label for="cleaningSuppliesVacuum">Cleaning Supplies/Vacuum</label>
-            </div>
-
-            <div class="form-floating mb-3">
-                <input type="text" id="thermostat" name="thermostat" class="form-control" autocomplete="off" placeholder="Thermostat" value={formData.thermostat}>
-                <label for="thermostat">Thermostat</label>
-            </div>
-
-            <div class="form-floating mb-3">
-                <input type="text" id="breakerBox" name="breakerBox" class="form-control" autocomplete="off" placeholder="Breaker Box" value={formData.breakerBox}>
-                <label for="breakerBox">Breaker Box</label>
-            </div>
-
-            <div class="form-floating mb-3">
-                <input type="text" id="alarmPanel" name="alarmPanel" class="form-control" autocomplete="off" placeholder="Alarm Panel" value={formData.alarmPanel}>
-                <label for="alarmPanel">Alarm Panel</label>
-            </div>
-
-            <div class="form-floating mb-3">
-                <input type="text" id="other" name="other" class="form-control" autocomplete="off" placeholder="Other" value={formData.other}>
-                <label for="other">Other</label>
-            </div>
-
-
-
-
-
+        <div class="form-floating mb-1">
+            <input type="text" id="address" class="form-control" name="address" autocomplete="address" placeholder="Address" value={formData.address}>
+            <label for="address">Address</label>
         </div>
+
+        <div class="form-floating mb-1">
+            <input type="text" id="personsWithAccess" class="form-control" name="personsWithAccess" autocomplete="off" placeholder="Persons with access to your home" value={formData.personsWithAccess}>
+            <label for="personsWithAccess">Persons with access to this location</label>
+        </div>
+
+        <div class="form-floating mb-1">
+            <input type="text" id="emergencyContact" class="form-control" name="emergencyContact"placeholder="Emergency Contact" value={formData.emergencyContact}>
+            <label for="emergencyContact">Emergency Contact</label>
+        </div>
+
     </div>
-
-    <div style="width: 100%; display: flex; justify-content: end; padding: 10px">    
-        <button 
-            type="submit" 
-            hx-disabled-elt="this"
-            class="btn btn-success"
-            >save
-        </button>
-    </div>
-
-</form>
-
-
+</div>

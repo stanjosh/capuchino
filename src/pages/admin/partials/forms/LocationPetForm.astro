@@ -1,0 +1,31 @@
+---
+import LocationItemForm from './LocationItemForm.astro';
+const { locationData, index } = Astro.props;
+
+let formData = {
+    address: locationData?.address || '',
+    personsWithAccess: locationData?.personsWithAccess || '',
+    emergencyContact: locationData?.emergencyContact || '',
+    user: locationData?.user || { _id: '' },
+    _id: locationData?._id || '',
+    
+} as any;
+
+
+
+export const partial = true;
+---
+
+
+
+    <div>
+
+        pets form
+
+    </div>
+
+
+
+
+
+

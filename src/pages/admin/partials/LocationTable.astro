@@ -10,26 +10,20 @@ export const partial= true;
 
 
 
-<div class="locations">
+<div class="locations accordion-flush" id="location-table">
 <table>
     <tbody>
         <tr>
             <th>Location info</th>
         </tr>
-
-    { data.map((rowData: any, index1: number) => (
-        <tr>   
-
-            <td><LocationDisplay location={rowData} index={index1} /></td>
-        </tr>
+    { data.map((rowData: any, index: number) => (
+        <tr><td id={`locRow${index}`}><LocationDisplay location={rowData} index={index} /></td></tr>
     ))
-
     </tbody>
 </table>
 
 
 
 </div>
-
 
 

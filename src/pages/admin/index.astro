@@ -18,7 +18,9 @@ import AdminHeader from '../../components/AdminHeader.astro'
       
 
   </div>
-  </AdminHeader>
+
+
+
 </Layout>
 
 
@@ -57,7 +59,6 @@ import AdminHeader from '../../components/AdminHeader.astro'
     .pet-icon {
         flex: 0 1 55px;
         min-width: 30px;
-        
         margin: 2px;
         display: flex;
         align-items: center;
@@ -66,15 +67,21 @@ import AdminHeader from '../../components/AdminHeader.astro'
         overflow: hidden;
     }
 
+    .pet-icon:hover {
+    background-color: #d3fdea;
+  }
+
     .pet-icon-img {
         width: 30px;
         height: 30px;
         
     }
     .pets {
+        width: 100%;
         display: flex;
+        flex: 1 1 400px;
         flex-wrap: wrap;
-        justify-content: center;
+        justify-content: end;
     }
     
     .locations {
@@ -120,14 +127,19 @@ import AdminHeader from '../../components/AdminHeader.astro'
 
   .loc-btn {
     display: flex;
+    width: 100%;
     max-width: 400px;
     justify-content: space-around;
     align-items: center;
     padding: 10px;
-    background-color: #ffffff7f;
     flex: 1 1 100px;
     border-radius: 5px;
     border: 1px solid #ccc;
   }
+
+  .loc-btn:hover {
+    background-color: #d3fdea;
+  }
+
 
 </style>

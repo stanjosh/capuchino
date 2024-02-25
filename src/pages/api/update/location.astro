@@ -3,13 +3,37 @@ import LocationDisplay from '../../admin/partials/LocationDisplay.astro'
 import db from '../../../../lib/db'
 const formData = await Astro.request.formData();
 
-const locationData = Array.from(formData).reduce((acc, [key, value]) => {
+let data = Array.from(formData).reduce((acc, [key, value]) => {
   acc[key] = value;
   return acc;
 }, {});
 
-console.log(locationData)
-const locations = await db.location.update( locationData._id ?? null, locationData )
+let updatedLocationData = {
+  address: data.address,
+  personsAccess: data.personsAccess,
+  emergencyContact: data.emergencyContact,
+
+
+
+  itemLocations: {
+    leashCarrierCrate: data.leashCarrierCrate || '',
+    petFoodWaterBowlTreats: data.petFoodWaterBowlTreats || '',
+    cleaningSuppliesVacuum: data.cleaningSuppliesVacuum || '',
+    thermostat: data.thermostat || '',
+    breakerBox:   data.breakerBox || '',
+    alarmPanel: data.alarmPanel || '',
+    other: data.other || ''
+  }
+
+};
+
+console.log(updatedLocationData)
+const location = await db.location.update( data._id ?? null, updatedLocationData )
+
+
+
+
 ---
-<LocationDisplay location={locations} />
+<LocationDisplay location={location} message={message} error={error} />
+
 

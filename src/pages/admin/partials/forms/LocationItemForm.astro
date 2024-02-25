@@ -1,0 +1,94 @@
+---
+const { data, index } = Astro.props;
+
+let itemLocations = { 
+        _id: data?._id || '',
+        leashCarrierCrate: data?.itemLocations?.leashCarrierCrate || '',
+        petFoodWaterBowlTreats: data?.itemLocations?.petFoodWaterBowlTreats || '',
+        cleaningSuppliesVacuum: data?.itemLocations?.cleaningSuppliesVacuum || '',
+        thermostat: data?.itemLocations?.thermostat || '',
+        breakerBox: data?.itemLocations?.breakerBox || '',
+        alarmPanel: data?.itemLocations?.alarmPanel || '',
+        other: data?.itemLocations?.other || '',
+} as any;
+
+
+export const partial = true;
+---
+
+
+
+    <div class="container ">
+        <div class="row">
+
+
+                
+                <div class="form-floating mb-3 col-sm-6">
+                    <input type="text" id="leashCarrierCrate" class="form-control" name="leashCarrierCrate" autocomplete="off" placeholder="Leash/Carrier/Crate" value={itemLocations.leashCarrierCrate}>
+                    <label for="leashCarrierCrate">Leash/Carrier/Crate</label>
+                </div>
+
+                <div class="form-floating mb-3 col-sm-6">
+                    <input type="text" id="petFoodWaterBowlTreats" class="form-control" name="petFoodWaterBowlTreats" autocomplete="off" placeholder="Pet Food/Water Bowl/Treats" value={itemLocations.petFoodWaterBowlTreats}>
+                    <label for="petFoodWaterBowlTreats">Pet Food/Water Bowl/Treats</label>
+                </div>
+
+
+
+        </div>
+
+        <div class="w-100  d-none d-md-block"></div> <!-- Break to new row -->
+
+        <div class="row">
+
+
+                <div class="form-floating mb-3 col-sm-6">
+                    <input type="text" id="cleaningSuppliesVacuum" class="form-control" name="cleaningSuppliesVacuum" autocomplete="off" placeholder="Cleaning Supplies/Vacuum" value={itemLocations.cleaningSuppliesVacuum}>
+                    <label for="cleaningSuppliesVacuum">Cleaning Supplies/Vacuum</label>
+                </div>
+
+                <div class="form-floating mb-3 col-sm-6">
+                    <input type="text" id="thermostat" name="thermostat" class="form-control" autocomplete="off" placeholder="Thermostat" value={itemLocations.thermostat}>
+                    <label for="thermostat">Thermostat</label>
+                </div>
+
+            </div>
+
+        
+        <div class="w-100  d-none d-md-block"></div> <!-- Break to new row -->
+
+        <div class="row">
+
+
+
+                <div class="form-floating mb-3 col-sm-6">
+                    <input type="text" id="breakerBox" name="breakerBox" class="form-control" autocomplete="off" placeholder="Breaker Box" value={itemLocations.breakerBox}>
+                    <label for="breakerBox">Breaker Box</label>
+                </div>
+
+                <div class="form-floating mb-3 col-sm-6">
+                    <input type="text" id="alarmPanel" name="alarmPanel" class="form-control" autocomplete="off" placeholder="Alarm Panel" value={itemLocations.alarmPanel}>
+                    <label for="alarmPanel">Alarm Panel</label>
+                </div>
+
+
+
+        </div>
+
+        <div class="w-100  d-none d-md-block"></div> <!-- Break to new row -->
+
+        <div class="row">
+
+                <div class="form-floating mb-3 col-12">
+                        <textarea id="other" name="other" class="form-control" style="height: 8rem" autocomplete="off" placeholder="Other" value={itemLocations.other}></textarea>
+                        <label for="other">Other (Medicine, etc)</label>
+                </div>
+
+        </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
