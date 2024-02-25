@@ -2,33 +2,20 @@
 
 import PetIcons from './PetIcons.astro'
 import LocationInfoForm from '../../partials/forms/LocationInfoForm.astro'
-const { location, index } = Astro.props;
+const { location, index = 0 } = Astro.props;
 ---
 
 
-    <div class="location">
-      
-        <button class="locButton" type="button" class="btn" data-bs-toggle="modal" data-bs-target={`#locModal${index}`}>{location?.address} 📝</button>
+    <div class="location" id={`locRow${index}`}>
+        <button 
+          type="button" 
+          class="btn loc-btn" 
+          hx-get="/admin/partials/forms/LocationInfoForm" 
+          hx-target={`#locRow${index}`}>{location?.address} 📝</button>
     <div>
       <PetIcons pets={location?.pets} index={index} />
     </div>
 
-    <div class="modal fade" id={`locModal${index}`} tabindex="-1"  aria-labelledby="locModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          
-          <div class="modal-header">
-              <h5 class="modal-title" id="locModalLabel">{location?.address} </h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          
-          <div class="modal-body">
-            <LocationInfoForm locationData={location} />
-          </div>
-        
-        </div>
-      </div>
-    </div>
 
   </div>
 

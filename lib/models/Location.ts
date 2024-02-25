@@ -18,6 +18,10 @@ const locationSchema = new Schema({
         required: true,
         autopopulate: true,
     },
+    personsWithAccess: {
+        type: String,
+        required: false,
+    },
     itemLocations: {
         breakerBox: {type: String},
         leashCarrierCrate: {type: String},

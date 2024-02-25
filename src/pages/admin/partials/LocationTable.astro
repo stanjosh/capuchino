@@ -14,13 +14,12 @@ export const partial= true;
 <table>
     <tbody>
         <tr>
-            <th>Address</th>
             <th>Location info</th>
         </tr>
 
     { data.map((rowData: any, index1: number) => (
         <tr>   
-            <td>{ rowData?.address }</td>
+
             <td><LocationDisplay location={rowData} index={index1} /></td>
         </tr>
     ))

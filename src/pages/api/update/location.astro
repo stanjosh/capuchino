@@ -1,0 +1,15 @@
+---
+import LocationDisplay from '../../admin/partials/LocationDisplay.astro'
+import db from '../../../../lib/db'
+const formData = await Astro.request.formData();
+
+const locationData = Array.from(formData).reduce((acc, [key, value]) => {
+  acc[key] = value;
+  return acc;
+}, {});
+
+console.log(locationData)
+const locations = await db.location.update( locationData._id ?? null, locationData )
+---
+<LocationDisplay location={locations} />
+

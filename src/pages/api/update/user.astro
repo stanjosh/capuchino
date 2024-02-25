@@ -1,0 +1,10 @@
+---
+import UserDisplay from '../../admin/partials/UserDisplay.astro'
+import db from '../../../../lib/db'
+const formData = await Astro.request.json();
+const userData = formData;
+
+const users = await db.user.update( userData._id ?? null, userData )
+---
+<UserDisplay user={users} />
+

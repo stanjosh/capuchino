@@ -1,73 +1,31 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Creds from '../components/Creds.astro';
 import MainContent from './partials/MainContent.astro';
-import div from '../components/div.astro';
-
-
-
-
 ---
-
 <Layout>
-
 	<MainContent active="Home">
-	<div style="text-align: center;">
-		<h1>Mad Cap Pet Care</h1>
-		<h3>Austin Pet Sitting and Dog Walking</h3>
-		<h2>Call or Text - (512) 497-8105 </h2>
-		<h5>One Free Walk or Petsit for New Clients!</h5>
-	</div>
-		<div>
-			<h2>We offer pet sitting and dog walking in Austin, Texas.</h2>
-			<p>
-				<strong>Your pets are your family.</strong> We understand that. That’s certainly how we feel about our pets as well! And, with that in mind, we pledge to give you the best care possible for your pets. You’ll be supporting a local business when choosing H4H. Check out our yelp link above for our reviews.
-			</p>
-			<p>
-				Whether you’re going to be out of town on vacation, or need us to walk your dog during the day while you’re at work, your pets will be in good hands with Hound for Hound. <span style="text-decoration: underline">We are insured, bonded, trained in pet first aid & CPR</span>, and able to provide excellent references.
-			</p>
+		<div style="display: flex; align-items: center; flex-wrap: wrap; justify-content: space-around;">
+			<div style="display: flex; align-items: center; flex-direction: column; justify-content: space-around">
+				<h1>Mad Cap Pet Care</h1>
+				<h2>Austin, Texas</h2>
+				<h3>Call or Text - (512) 497-8105 </h3>
+				<h5>One Free Walk or Petsit for New Clients!</h5>
+				<Creds />
+			</div>
+			<img style="display: block; float:right; max-height: 25rem; width: auto" src="/images/big-dog.jpg" width="300">
+			<div>
+				<div>
+					<p>
+						<strong>Your pets are your family.</strong> We understand that. That’s certainly how we feel about our pets as well! And, with that in mind, we pledge to give you the best care possible for your pets. You’ll be supporting a local business when choosing Mad Cap. Check out our yelp link above for our reviews.
+					</p>
+					<p>
+						Whether you’re going to be out of town on vacation, or need us to walk your dog during the day while you’re at work, your pets will be in good hands with Mad Cap. <span style="text-decoration: underline">We are insured, bonded, trained in pet first aid & CPR</span>, and able to provide excellent references.
+					</p>
+				</div>
+			</div>
 		</div>
-	<div>
-		<img style="display: block; float:right; max-width: 30%" src="/images/big-dog.jpg" width="300">
-		<div>
-			
-			<h2>Dog walking or hiking</h2>
-			<p>
-				
-				We’re available for walks around the neighborhood or the nearest park. We’ll make sure your dog gets some great exercise and has some fun along the way.
-				
-			</p>
-
-		</div>
-
-		<div>
-			<h2>Pet Sitting in your home</h2>
-			<p>
-				
-				If you’re going to be out of town, our in-home pet sitting services will keep your cat, dog, and other small pets happy, healthy, and ready to greet you when you return home.
-			</p>
-			<p>
-				While we're there caring for your pets, we will also be happy to bring in the mail and newspapers, water indoor and outdoor plants, change the lighting, take out the trash, and other small tasks to keep your home nice and vibrant while you're away!
-			</p>
-		</div>
-		
-	</div>
-		<div>
-			
-			<h2>About Hound for Hound</h2>
-
-			<p>
-				<img style="display: block; float:left; max-width: 30%" src="/images/matt1.jpg" width="300">
-				Hi, my name is Matt Myers, owner of Hound for Hound Dog Walking in Austin, Texas.
-				I grew up in Ohio taking care of several dogs and cats. I left Ohio to go to college in Boston. That was a dog free period that I try to forget- haha. My wife and I got two dogs, Sam and Brewer, from a local animal shelter when we moved to Austin. Before long, my spare time became happily devoted to the pups. I even put my banjo in the closet. These guys have walked all over Texas since. Soon after, Hound for Hound was born and we aim to keep those tails waggin’!
-				We’re CPR certified and insured. Your pets will get the best of care while we are watching over them. When you choose us you’ll be choosing a local and independent Austin business since 2010!
-			</p>
-
-		</div>
-
-		
-
 	</MainContent>
-
 </Layout>
 
 <style>

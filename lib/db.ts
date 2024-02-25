@@ -1,9 +1,6 @@
 import connectMongo from "./mongoose";
 import { Visit, Location, User } from "./models/index";
 
-
-
-
 const db = {
     visit: {
         getOne: async (id: string) => {
@@ -50,6 +47,17 @@ const db = {
             await connectMongo();
             const newLocationData = await Location.create(locationData);
             return newLocationData;
+        },
+
+        update: async (id: string, locationData: any) => {
+            await connectMongo();
+            if (!id) {
+                return await Location.create( locationData )
+            } else if (id && locationData) {
+                return await Location.findByIdAndUpdate(id, locationData, {new: true})
+            } else {
+                return null;
+            }
         },
 
         search: async (searchTerm: string) => {

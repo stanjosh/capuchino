@@ -1,4 +1,30 @@
 ---
+const contacts = [
+  {
+    name: "email",
+    url: "",
+    image: "/images/socials/email.svg",
+  },
+  {
+    name: "facebook",
+    url: "",
+    image: "/images/socials/facebook.svg",
+  },
+  {
+    name: "instagram",
+    url: "",
+    image: "/images/socials/insta.svg",
+  },
+  {
+    name: "yelp",
+    url: "",
+    image: "/images/socials/yelp.svg",
+  },
+
+];
+
+
+
 const { active } = Astro.props;
 export const partial = true;
 
@@ -9,7 +35,7 @@ export const partial = true;
 
   <nav class="navbar navbar-expand-md navbar-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/">Mad Cap</a>
+      <a class="navbar-brand" href="/">Mad Cap Pet Care</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -20,7 +46,19 @@ export const partial = true;
           <a class=`nav-link ${active === 'Area' ? 'active' : null } disabled` aria-disabled="true">Area</a>
           <a class=`nav-link ${active === 'Reviews' ? 'active' : null }` href="/reviews">Reviews</a>
           <a class=`nav-link ${active === 'Gallery' ? 'active' : null } disabled` aria-disabled="true">Gallery</a>
+          <div class="socials">
+        
+            {contacts.map((item) => (
+                <a href={item.url} class="social">
+                <div style={`background-image: url(${item.image})`}>
+                
+                </div>
+                </a> 
+        
+                ))}
+          </div>
         </div>
+
       </div>
     </div>
   </nav>
@@ -33,7 +71,40 @@ export const partial = true;
         margin: 0;
         padding: 0;
         margin-bottom: 20px;
+        
     }
 
+    .navbar-nav {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      align-items: center;
+    }
+
+    .social div {
+        min-height: 32px;
+        min-width: 32px;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin: 1cqw;
+        border-radius: 5px;
+        transition: all 0.2s ease-in-out;
+    }
+
+    .social div:hover {
+        transform: scale(1.2);
+    }
+
+    .socials {
+        display: flex;
+        width: 100%;
+        justify-content: flex-end;
+        max-height: min-content;
+        align-items: center;
+        padding: 1rem;
+    }
 
 </style>

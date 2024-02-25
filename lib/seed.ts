@@ -45,6 +45,7 @@ const locationData = [
         user: mapObjectIds('user1'),
         address: '123 main st',
         emergenctContact: 'jim 555-2313',
+        personsWithAccess: "jed allen, steven comtran",
         itemLocations: {
             breakerBox: 'basement',
             leashCarrierCrate: 'mudroom',
@@ -68,6 +69,7 @@ const locationData = [
         user: mapObjectIds('user2'),
         address: '133 main st',
         emergenctContact: '555-1313',
+        personsWithAccess: "krill coean, asen trag, steven c",
         itemLocations: {
             breakerBox: 'inaccessible',
             leashCarrierCrate: 'mudroom',

@@ -11,7 +11,7 @@ import AdminHeader from '../../components/AdminHeader.astro'
 ---
 <Layout >
   <AdminHeader />
-  <div id="admin-content" hx-get="/admin/partials/Visits" hx-trigger="load" hx-swap="innerHTML">
+  <div id="admin-content" hx-get="/admin/partials/Locations" hx-trigger="load" hx-swap="innerHTML">
 
     
 
@@ -48,6 +48,8 @@ import AdminHeader from '../../components/AdminHeader.astro'
         border-bottom: 1px solid #ddd;
     }
 
+    
+
     tr:nth-child(odd) {
         background-color: aquamarine;
     }
@@ -80,19 +82,21 @@ import AdminHeader from '../../components/AdminHeader.astro'
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+        
+
     }
 
     .location {
-    width: 100%;
+      width: 75%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: stretch;
     align-items: center;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    margin: 5px 0;
-    max-width: max-content;
+    margin: 5px;
+
   }
 
   .list-group {
@@ -114,10 +118,14 @@ import AdminHeader from '../../components/AdminHeader.astro'
   }
 
 
-  .locButton {
+  .loc-btn {
+    display: flex;
+    max-width: 400px;
+    justify-content: space-around;
+    align-items: center;
     padding: 10px;
     background-color: #ffffff7f;
-    flex: 1;
+    flex: 1 1 100px;
     border-radius: 5px;
     border: 1px solid #ccc;
   }

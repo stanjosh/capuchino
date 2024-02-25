@@ -1,0 +1,10 @@
+---
+import VisitDisplay from '../../admin/partials/VisitDisplay.astro'
+import db from '../../../../lib/db'
+const formData = await Astro.request.json();
+const visitData = formData;
+
+const visits = await db.visit.update( visitData._id ?? null, visitData )
+---
+<VisitDisplay visit={visits} />
+
