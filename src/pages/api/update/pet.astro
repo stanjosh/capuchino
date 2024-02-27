@@ -1,0 +1,28 @@
+---
+import PetFormTabs from '../../admin/partials/forms/PetFormTabs.astro';
+import LocationTitle from '../../admin/partials/LocationTitle.astro';
+import db from '../../../../lib/db'
+const formData = await Astro.request.formData();
+
+
+const locationId = formData.get('locationId')
+const index = formData.get('index')
+
+let petData = {
+  _id: formData.get('_id'),
+  name: formData.get('name'),
+  type: formData.get('type'),
+  description: formData.get('description'),
+} as any
+
+
+
+console.log(petData)
+const location = await db.location.updatePet( locationId , petData ) as any
+
+
+
+---
+
+<LocationTitle data={location} index={index} oob={true} />
+<PetFormTabs data={location} index={index} />

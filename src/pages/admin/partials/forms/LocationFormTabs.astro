@@ -1,58 +1,37 @@
 ---
 import LocationInfoForm from "./LocationInfoForm.astro";
 import LocationItemForm from "./LocationItemForm.astro";
-import LocationPetForm from "./LocationPetForm.astro";
+import PetFormTabs from "./PetFormTabs.astro";
 
-const { data, index, message, error } = Astro.props;
+const { data, index } = Astro.props;
 
 export const partial = true;
 ---
 
   <nav>
     <div class="nav nav-pills mb-3 justify-content-center" id="nav-tab" role="tablist">
-      <button class="nav-link active" id={`nav-basic-tab-${index}`} data-bs-toggle="tab" data-bs-target={`#nav-basic-${index}`} type="button" role="tab" aria-controls={`nav-basic-tab-${index}`} aria-selected="true">Basic Information</button>
-      <button class="nav-link" id={`nav-item-tab-${index}`} data-bs-toggle="tab" data-bs-target={`#nav-item-${index}`} type="button" role="tab" aria-controls={`nav-item-tab-${index}`} aria-selected="false">Item Locations</button>
-      <button class="nav-link" id={`nav-pet-tab-${index}`} data-bs-toggle="tab" data-bs-target={`#nav-pet-${index}`} type="button" role="tab" aria-controls={`nav-pet-tab-${index}`} aria-selected="false">Pets</button>
+      <button class="nav-link loc-btn active" id={`nav-basic-tab-${index}`} data-bs-toggle="tab" data-bs-target={`#nav-basic-${index}`} type="button" role="tab" aria-controls={`nav-basic-tab-${index}`} aria-selected="true">Basic Information</button>
+      <button class="nav-link loc-btn" id={`nav-item-tab-${index}`} data-bs-toggle="tab" data-bs-target={`#nav-item-${index}`} type="button" role="tab" aria-controls={`nav-item-tab-${index}`} aria-selected="false">Item Locations</button>
+      <button class="nav-link loc-btn" id={`nav-pet-tab-${index}`} data-bs-toggle="tab" data-bs-target={`#nav-pet-${index}`} type="button" role="tab" aria-controls={`nav-pet-tab-${index}`} aria-selected="false">Pets</button>
       
     </div>
   </nav>
 
-  <form hx-post="/api/update/location" hx-swap="transition:true" hx-target={`#locRow${index}`} >
 
 
   <div class="tab-content" id="nav-tabContent">
     <div class="tab-pane fade show active" id={`nav-basic-${index}`} role="tabpanel" aria-labelledby={`nav-basic-${index}`} tabindex="0">
-      <LocationInfoForm data={data}/>
+      <LocationInfoForm data={data} index={index} />
     </div>
     <div class="tab-pane fade" id={`nav-item-${index}`} role="tabpanel" aria-labelledby={`nav-item-tab-${index}`} tabindex="0">
-      <LocationItemForm data={data} />
+      <LocationItemForm data={data} index={index} />
     </div>
     <div class="tab-pane fade" id={`nav-pet-${index}`} role="tabpanel" aria-labelledby={`nav-pet-tab-${index}`} tabindex="0">
-      <LocationPetForm data={data} />
+      <PetFormTabs data={data} index={index} />
     </div>
   </div>
 
-  <input type="hidden" name="_id" value={data._id}>
 
-  {message ? 
-    <div class="alert alert-success" role="alert">
-      {message}
-    </div>
-    : null  
-  }
 
-  {error ? 
-    <div class="alert alert-danger" role="alert">
-      {error}
-    </div>
-    : null
-  }
 
-  <div style="width: 100%; display: flex; justify-content: end; padding: 10px">    
-        <button 
-        type="submit" 
-        class="btn btn-success"
-        >save
-      </button>
-  </div>
-</form>
+

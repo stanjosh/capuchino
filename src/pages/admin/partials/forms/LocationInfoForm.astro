@@ -16,23 +16,29 @@ let formData = {
 export const partial = true;
 ---
 
-<div>
-    <div>
+<form hx-post="/api/update/location" hx-swap="transition:true" hx-target={`#locRow${index}`} >
 
-        <div class="form-floating mb-1">
-            <input type="text" id="address" class="form-control" name="address" autocomplete="address" placeholder="Address" value={formData.address}>
-            <label for="address">Address</label>
-        </div>
-
-        <div class="form-floating mb-1">
-            <input type="text" id="personsWithAccess" class="form-control" name="personsWithAccess" autocomplete="off" placeholder="Persons with access to your home" value={formData.personsWithAccess}>
-            <label for="personsWithAccess">Persons with access to this location</label>
-        </div>
-
-        <div class="form-floating mb-1">
-            <input type="text" id="emergencyContact" class="form-control" name="emergencyContact"placeholder="Emergency Contact" value={formData.emergencyContact}>
-            <label for="emergencyContact">Emergency Contact</label>
-        </div>
-
+    <div class="form-floating mb-1">
+        <input type="text" id="address" class="form-control" name="address" autocomplete="address" placeholder="Address" value={formData.address}>
+        <label for="address">Address</label>
     </div>
-</div>
+
+    <div class="form-floating mb-1">
+        <input type="text" id="personsWithAccess" class="form-control" name="personsWithAccess" autocomplete="off" placeholder="Persons with access to your home" value={formData.personsWithAccess}>
+        <label for="personsWithAccess">Persons with access to this location</label>
+    </div>
+
+    <div class="form-floating mb-1">
+        <input type="text" id="emergencyContact" class="form-control" name="emergencyContact"placeholder="Emergency Contact" value={formData.emergencyContact}>
+        <label for="emergencyContact">Emergency Contact</label>
+    </div>
+
+    <div style="width: 100%; display: flex; justify-content: end; padding: 10px">    
+        <button 
+            type="submit" 
+            class="btn btn-success"
+            >save
+        </button>
+    </div>
+</form>
+

@@ -6,7 +6,7 @@ const locationSchema = new Schema({
     address: {
         type: String,
         required: true,
-
+        unique: true,
     },
     emergencyContact:{
         type: String,
@@ -32,18 +32,19 @@ const locationSchema = new Schema({
         other: {type: String},
     },
     pets: [{
-        name: {
+         name: {
             type: String,
             required: true,
             index: true,
         },
-        cat: {
-            type: Boolean,
+        type: {
+            type: String,
             required: false,
+            default: 'dog'
         },
         description: {
             type: String,
-            required: true,
+            required: false,
         }
     }],
 });

@@ -1,16 +1,45 @@
 ---
+const { data, index, id } = Astro.props
+
+const formData = {
+    _id: data?._id || '',
+    name: data?.name || '',
+    type: data?.type || '',
+    description: data?.description || ''
+}
 
 export const partial = true;
 ---
 
 
-<form hx-post="/api/pet">
-    <label for="name">Name</label>
-    <input type="text" id="name" name="name" required>
-    <label for="type">Type</label>
-    <input type="text" id="type" name="type" required>
-    
+<form hx-post="/api/update/pet" hx-target={`#nav-pet-${index}`} hx-swap="innerHTML transition:true">
 
+    <div class="form-floating mb-1">
+        <input type="text" id="name" class="form-control" name="name" autocomplete="name" placeholder="name" value={formData.name} required>
+        <label for="name">Name</label>
+    </div>
 
+    <div class="form-floating mb-1">
+        <input type="text" id="type" class="form-control" name="type" autocomplete="off" placeholder="Persons with access to your home" value={formData.type}>
+        <label for="type">Pet type (dog, cat, bird, etc)</label>
+    </div>
+
+    <div class="form-floating mb-1">
+        <input type="text" id="description" class="form-control" name="description"placeholder="Emergency Contact" value={formData.description}>
+        <label for="description">Description</label>
+    </div>
+
+    <input type="hidden" name="locationId" value={ id }>
+    <input type="hidden" name="_id" value={ formData._id }>
+    <input type="hidden" name="index" value={ index }>
+
+    <div style="width: 100%; display: flex; justify-content: end; padding: 10px">    
+        <button 
+        type="submit" 
+        class="btn btn-success"
+        >save
+    </button>
+    </div>
 
 </form>
+

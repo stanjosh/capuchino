@@ -31,6 +31,7 @@ const visitSchema = new Schema({
         openCloseCurtains: {type: Boolean},
         garbageRecycle: {type: Boolean},
         tvRadioOn: {type: Boolean},
+        other: {type: String},
     },
 });
 

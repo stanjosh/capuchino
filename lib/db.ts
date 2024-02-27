@@ -1,6 +1,10 @@
 import connectMongo from "./mongoose";
 import { Visit, Location, User } from "./models/index";
 
+
+
+
+
 const db = {
     visit: {
         getOne: async (id: string) => {
@@ -22,6 +26,7 @@ const db = {
         },
 
         search: async (searchTerm: string) => {
+            
             await connectMongo();
             const visitData =  await Visit.find({$text: {$search: searchTerm}});
             return visitData;
@@ -49,14 +54,40 @@ const db = {
             return newLocationData;
         },
 
+        addPet: async (id: string, petData: any) => {
+            await connectMongo();
+            const locationData = await Location.findById(id);
+            locationData?.pets.push(petData);
+            const data = await locationData?.save();
+            return data;
+        },
+
+        updatePet: async (id: string, petData: any) => {
+            await connectMongo();
+            const locationData = await Location.findById(id);
+            const pet = petData._id ? locationData?.pets.id(petData._id) : null;
+            if (pet) {
+                delete petData._id;
+                pet.set(petData);
+                const data = await locationData?.save();
+                return data;
+            } else if (locationData && petData) {
+                delete petData._id;
+                locationData?.pets.addToSet(petData);
+                const data = await locationData?.save();
+                return data;
+            }
+            return null;
+        },
+
         update: async (id: string, locationData: any) => {
             await connectMongo();
-            return await Location.findByIdAndUpdate(id, locationData, {new: true})
+            
+            const data = await Location.findByIdAndUpdate(id, locationData, {new: true})
                 .catch((err) => {
                     return err;
                 });
-
-            
+            return data;
         },
 
         search: async (searchTerm: string) => {

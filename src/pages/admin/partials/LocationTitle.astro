@@ -1,0 +1,40 @@
+---
+const { data, index, oob } = Astro.props;
+
+const pets =  data?.pets || [];
+
+
+const petTypes = {
+  cat: '😼',
+  dog: '🐶',
+  bird: '🐦',
+  fish: '🐠',
+  rabbit: '🐰',
+  hamster: '🐹',
+  guinea_pig: '🐹',
+  turtle: '🐢',
+  snake: '🐍',
+  lizard: '🦎',
+  ferret: '🐭',
+  pig: '🐷',
+  horse: '🐴',
+  goat: '🐐',
+  cow: '🐄',
+  sheep: '🐑',
+  chicken: '🐔',
+  duck: '🦆',
+  goose: '🦢',
+  turkey: '🦃',
+  other: '🐾',
+};
+
+const petList = pets.map((pet) => (petTypes[pet.type] ?? petTypes['other']) + pet.name ).join(', ');
+
+
+export const partial = true;
+---
+
+<div id={`loc-title-${index}`} hx-swap-oob={oob} style="width: 100%; padding: 5px; display:flex; overflow-x:hidden; justify-content:space-between">
+    <h5 class="accordion-header">{data?.address}</h2>
+    <span>😐 {data?.user?.name}, {petList}</span>
+</div>

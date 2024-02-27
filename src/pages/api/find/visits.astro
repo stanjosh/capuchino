@@ -1,5 +1,5 @@
 ---
-import CustomerTable from '../../admin/partials/CustomerTable.astro'
+import VisitTable from '../../admin/partials/VisitTable.astro'
 import db from '../../../../lib/db'
 const formData = await Astro.request.formData()
 const searchTerm = formData.get('search')?.toString()
@@ -7,5 +7,5 @@ const searchTerm = formData.get('search')?.toString()
 
 const users = searchTerm ? await db.user.search( searchTerm as string ) : await db.user.getAll()
 ---
-<CustomerTable data={users} />
+<VisitTable data={users} />
 

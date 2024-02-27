@@ -16,6 +16,7 @@ let itemLocations = {
 export const partial = true;
 ---
 
+<form hx-post="/api/update/location" hx-swap="transition:true" hx-target={`#locRow${index}`} >
 
 
     <div class="container ">
@@ -90,5 +91,12 @@ export const partial = true;
         </div>
     </div>
 
-
+    <div style="width: 100%; display: flex; justify-content: end; padding: 10px">    
+        <button 
+        type="submit" 
+        class="btn btn-success"
+        >save
+      </button>
+    </div>
+</form>
 

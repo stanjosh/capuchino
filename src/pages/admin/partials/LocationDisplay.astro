@@ -1,21 +1,23 @@
 ---
-
-import PetIcons from './PetIcons.astro'
 import LocationFormTabs from '../../admin/partials/forms/LocationFormTabs.astro'
+import LocationTitle from './LocationTitle.astro'
 
 const { location, index = 0 } = Astro.props;
+
+export const partial = true;
 ---
 
 
 
-    <div class="d-inline-flex gap-1 location">
-      <button class="btn loc-btn" type="button" data-bs-toggle="collapse" data-bs-target={`#collapse-form-${index}`} aria-expanded="false" aria-controls={`collapse-form-${index}`}>
-        {location?.address}
-      </button>
-      <PetIcons pets={location?.pets} index={index} />
+    <div class="accordion-item" id={`loc-disp-${index}`}>
+      
+        <button class="accordion-button collapsed d-flex" type="button" data-bs-toggle="collapse" data-bs-target={`#collapse-form-${index}`} aria-expanded="false" aria-controls={`collapse-form-${index}`}>
+          <LocationTitle data={location} index={index} />
+        </button>
+     
     </div>
     <div class="collapse" id={`collapse-form-${index}`} data-bs-parent="#location-table">
-      <div class="card card-body mx-auto" style="max-width: 800px">
+      <div class="mx-auto p-3" style="max-width: 800px">
         <LocationFormTabs data={location} index={index} />
       </div>
     </div>

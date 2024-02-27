@@ -3,37 +3,44 @@ import LocationDisplay from '../../admin/partials/LocationDisplay.astro'
 import db from '../../../../lib/db'
 const formData = await Astro.request.formData();
 
-let data = Array.from(formData).reduce((acc, [key, value]) => {
+let data = Array.from(formData).reduce((acc: any, [key, value]) => {
   acc[key] = value;
   return acc;
-}, {});
+}, {}) as any;
 
 let updatedLocationData = {
-  address: data.address,
-  personsAccess: data.personsAccess,
-  emergencyContact: data.emergencyContact,
+  address: data?.address,
+  personsAccess: data?.personsAccess,
+  emergencyContact: data?.emergencyContact,
 
 
 
   itemLocations: {
-    leashCarrierCrate: data.leashCarrierCrate || '',
-    petFoodWaterBowlTreats: data.petFoodWaterBowlTreats || '',
-    cleaningSuppliesVacuum: data.cleaningSuppliesVacuum || '',
-    thermostat: data.thermostat || '',
-    breakerBox:   data.breakerBox || '',
-    alarmPanel: data.alarmPanel || '',
-    other: data.other || ''
+    leashCarrierCrate: data?.leashCarrierCrate || '',
+    petFoodWaterBowlTreats: data?.petFoodWaterBowlTreats || '',
+    cleaningSuppliesVacuum: data?.cleaningSuppliesVacuum || '',
+    thermostat: data?.thermostat || '',
+    breakerBox:   data?.breakerBox || '',
+    alarmPanel: data?.alarmPanel || '',
+    other: data?.other || ''
   }
+
 
 };
 
-console.log(updatedLocationData)
 const location = await db.location.update( data._id ?? null, updatedLocationData )
 
-
+if (location.error) {
+  console.log(location.error)
+  var message = 'There was an error updating the location. Please try again.'
+} else {
+  var message = 'Location updated successfully.'
+}
 
 
 ---
-<LocationDisplay location={location} message={message} error={error} />
+
+{ location.error ? <LocationDisplay location={updatedLocationData} error={message} /> : <LocationDisplay location={location} message={message} /> }
+
 
 

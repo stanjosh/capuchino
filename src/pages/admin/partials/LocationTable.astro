@@ -3,24 +3,20 @@ import LocationDisplay from './LocationDisplay.astro'
 
 const { data } = Astro.props
 
-console.log(data)
+
 export const partial= true;
 
 ---
 
 
 
-<div class="locations accordion-flush" id="location-table">
-<table>
-    <tbody>
-        <tr>
-            <th>Location info</th>
-        </tr>
+<div class="accordion accordion-flush mx-auto" id="location-table">
+
     { data.map((rowData: any, index: number) => (
-        <tr><td id={`locRow${index}`}><LocationDisplay location={rowData} index={index} /></td></tr>
+        <div class="accordion-item" id={`locRow${index}`}>
+            <LocationDisplay location={rowData} index={index} />
+        </div>
     ))
-    </tbody>
-</table>
 
 
 

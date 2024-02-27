@@ -25,6 +25,16 @@ import AdminHeader from '../../components/AdminHeader.astro'
 
 
 <style is:global>
+    html {
+      overflow-x: hidden;
+      margin-right: calc(-1 * (100vw - 100%));
+    }
+
+    form: {
+      height: 100%;
+      align-items: center;
+    }
+
     .loading-indicator {
       width: 35px;
       height: 35px;
@@ -68,8 +78,8 @@ import AdminHeader from '../../components/AdminHeader.astro'
     }
 
     .pet-icon:hover {
-    background-color: #d3fdea;
-  }
+      background-color: #d3fdea;
+    }
 
     .pet-icon-img {
         width: 30px;
@@ -135,11 +145,18 @@ import AdminHeader from '../../components/AdminHeader.astro'
     flex: 1 1 100px;
     border-radius: 5px;
     border: 1px solid #ccc;
+    background-color: #ccc;
+    margin: 5px;
   }
 
   .loc-btn:hover {
     background-color: #d3fdea;
   }
+
+  .loc-btn:active {
+    background-color: #a3fdea;
+  }
+
 
 
 </style>

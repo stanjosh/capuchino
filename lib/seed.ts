@@ -19,7 +19,7 @@ const mapObjectIds = (key: string) => {
 
 const fakeUserData = [{
     _id: mapObjectIds('user1'),
-    name: 'test',
+    name: 'Steve Milson',
     phone: '555-1212',
     email: '123twerk@gmail.com',
     password: 'password',
@@ -28,7 +28,7 @@ const fakeUserData = [{
 
 {
     _id: mapObjectIds('user2'),
-    name: 'test2',
+    name: 'Greg Andrews',
     phone: '555-1222',
     email: '321kirk@gmail.com',
     password: 'password',
@@ -43,9 +43,9 @@ const locationData = [
    {
          _id: mapObjectIds('location1'),
         user: mapObjectIds('user1'),
-        address: '123 main st',
-        emergenctContact: 'jim 555-2313',
-        personsWithAccess: "jed allen, steven comtran",
+        address: '123 Main Street',
+        emergenctContact: 'Jim 555-2313',
+        personsWithAccess: "Jed Allen, Steven Comtran",
         itemLocations: {
             breakerBox: 'basement',
             leashCarrierCrate: 'mudroom',
@@ -58,8 +58,9 @@ const locationData = [
         emergentContact: '555-1212',
         pets: [
             {
-                name: 'spot',
-                description: 'white dog'
+                name: 'Sparky',
+                type: 'dog',
+                description: 'Keeshond'
             }
         ],
     },
@@ -67,7 +68,7 @@ const locationData = [
     {
         _id: mapObjectIds('location2'),
         user: mapObjectIds('user2'),
-        address: '133 main st',
+        address: '1232 Union Ave',
         emergenctContact: '555-1313',
         personsWithAccess: "krill coean, asen trag, steven c",
         itemLocations: {
@@ -81,17 +82,18 @@ const locationData = [
         },
         pets: [
             {
-                name: 'fido',
+                name: 'Cherry',
+                type: 'dog',
                 description: 'brown shaggy dog'
             },
             {
-                name: 'mittens',
-                cat: true,
+                name: 'Gravy',
+                type: 'cat',
                 description: 'black cat'
             },
             {
-                name: 'fluffy',
-                cat: true,
+                name: 'Apple',
+                type: 'cat',
                 description: 'white cat'
             }
         ]
@@ -99,7 +101,7 @@ const locationData = [
    {
         _id: mapObjectIds('location3'),
         user: mapObjectIds('user1'),
-        address: '137 main st',
+        address: '9900 South IH 35',
         emergenctContact: '555-1213',
         itemLocations: {
             breakerBox: 'basement',
@@ -112,12 +114,13 @@ const locationData = [
         },
         pets: [
             {
-                name: 'chimi',
+                name: 'Chimi',
+                type: 'dog',
                 description: 'shaky old chiuahua'
             },
             {
-                name: 'boots',
-                cat: true,
+                name: 'Changa',
+                type: 'cat',
                 description: 'spotted cat'
             }
         ]

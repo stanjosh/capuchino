@@ -16,7 +16,7 @@ const tasknames = {
     'openCloseCurtains' : 'Open / Close curtains',
     'alternateLights' : 'Alternate lights' ,
     'tvRadioOn' : 'Turn on TV / Radio',
-    'other' : data.other,
+    'other' : data?.other ? data.other as string : 'Other',
     }
 
 
