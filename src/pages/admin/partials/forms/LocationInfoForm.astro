@@ -33,6 +33,9 @@ export const partial = true;
         <label for="emergencyContact">Emergency Contact</label>
     </div>
 
+    <input type="hidden" name="index" value={index} />
+    <input type="hidden" name="id" value={formData._id} />
+
     <div style="width: 100%; display: flex; justify-content: end; padding: 10px">    
         <button 
             type="submit" 

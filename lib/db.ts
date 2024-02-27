@@ -82,12 +82,7 @@ const db = {
 
         update: async (id: string, locationData: any) => {
             await connectMongo();
-            
-            const data = await Location.findByIdAndUpdate(id, locationData, {new: true})
-                .catch((err) => {
-                    return err;
-                });
-            return data;
+            return await Location.findByIdAndUpdate(id, locationData, {new: true})
         },
 
         search: async (searchTerm: string) => {

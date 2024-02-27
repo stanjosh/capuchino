@@ -3,44 +3,45 @@ import LocationDisplay from '../../admin/partials/LocationDisplay.astro'
 import db from '../../../../lib/db'
 const formData = await Astro.request.formData();
 
+const index = formData.get('index') as string;
+const id = formData.get('id') as string;
+
 let data = Array.from(formData).reduce((acc: any, [key, value]) => {
   acc[key] = value;
   return acc;
 }, {}) as any;
 
+const location = await db.location.getOne(id) as any;
+
+
 let updatedLocationData = {
-  address: data?.address,
-  personsAccess: data?.personsAccess,
-  emergencyContact: data?.emergencyContact,
-
-
-
+  address: data?.address || location.address || '',
+  personsAccess: data?.personsAccess || location.personsAccess || '',
+  emergencyContact: data?.emergencyContact || location.emergencyContact || '',
   itemLocations: {
-    leashCarrierCrate: data?.leashCarrierCrate || '',
-    petFoodWaterBowlTreats: data?.petFoodWaterBowlTreats || '',
-    cleaningSuppliesVacuum: data?.cleaningSuppliesVacuum || '',
-    thermostat: data?.thermostat || '',
-    breakerBox:   data?.breakerBox || '',
-    alarmPanel: data?.alarmPanel || '',
-    other: data?.other || ''
-  }
-
+    leashCarrierCrate: data?.leashCarrierCrate || location.itemLocations.leashCarrierCrate || '',
+    petFoodWaterBowlTreats: data?.petFoodWaterBowlTreats || location.itemLocations.petFoodWaterBowlTreats || '',
+    cleaningSuppliesVacuum: data?.cleaningSuppliesVacuum || location.itemLocations.cleaningSuppliesVacuum || '',
+    thermostat: data?.thermostat || location.itemLocations.thermostat || '',
+    breakerBox:   data?.breakerBox || location.itemLocations.breakerBox || '',
+    alarmPanel: data?.alarmPanel || location.itemLocations.alarmPanel || '',
+    other: data?.other || location.itemLocations.other || '',
+  },
+  pets: { ...location.pets } || {},
 
 };
 
-const location = await db.location.update( data._id ?? null, updatedLocationData )
+updatedLocationData = updatedLocationData.filter((key, value) => {
+  return value !== '';
+})  as any;
 
-if (location.error) {
-  console.log(location.error)
-  var message = 'There was an error updating the location. Please try again.'
-} else {
-  var message = 'Location updated successfully.'
-}
+location.data = updatedLocationData;
 
+console.log(location)
 
 ---
 
-{ location.error ? <LocationDisplay location={updatedLocationData} error={message} /> : <LocationDisplay location={location} message={message} /> }
+<LocationDisplay data={location} index={index} >
 
 
 
