@@ -1,5 +1,5 @@
 ---
-import TasksDisplay from "./TasksDisplay.astro";
+import VisitDisplay from "./VisitDisplay.astro";
 import LocationTitle from './LocationTitle.astro'
 
 const { data } = Astro.props
@@ -27,7 +27,7 @@ export const partial= true;
             <td>{ rowData.times?.toLocaleString() }</td>
             <td>{ rowData.location?.address }</td>
             <td>{ rowData.type }</td>
-            <td><TasksDisplay data={ rowData.tasks } visitType={rowData.type} index={index1} /></td>
+            <td><VisitDisplay data={ rowData.tasks } visitType={rowData.type} index={index1} /></td>
             <td><LocationTitle location={rowData.location} index={index1} /></td>
         </tr>
     ))
