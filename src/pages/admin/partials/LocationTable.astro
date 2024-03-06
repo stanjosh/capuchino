@@ -10,15 +10,17 @@ export const partial= true;
 
 
 
-<div class="accordion accordion-flush mx-auto" id="location-table">
+<div class="container container-fluid" id="location-table">
 
     { data.map((rowData: any, index: number) => (
-        <div class="accordion-item" id={`locRow${index}`}>
-            <LocationDisplay location={rowData} index={index} />
-        </div>
-    ))
+        <LocationDisplay data={rowData} index={index} />
+    )) }
 
-
+    <div class="accordion-item" id={`locRow-new`}>
+            <LocationDisplay index={-1}>
+                Add New Location
+            </LocationDisplay>
+    </div>
 
 </div>
 

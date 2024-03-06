@@ -1,0 +1,56 @@
+---
+const { data, index } = Astro.props;
+
+let formData = {
+    name: data?.name || '',
+    phone: data?.phone || '',
+    email: data?.email || '',
+    user: data?.user || { _id: '' },
+    password: '',
+    _id: data?._id || '',
+    
+} as any;
+
+
+
+
+export const partial = true;
+---
+
+<form hx-post="/api/update/user" hx-swap="transition:true" hx-target={`#user-row-${index}`} >
+
+    <div class="form-floating mb-1">
+        <input type="text" id="name" class="form-control" name="name" autocomplete="name" placeholder="Name" value={formData.name} required>
+        <label for="name">name</label>
+    </div>
+
+    <div class="form-floating mb-1">
+        <input type="text" id="phone" class="form-control" name="phone" autocomplete="off" placeholder="Persons with access to your home" value={formData.phone} required>
+        <label for="phone">phone</label>
+    </div>
+
+    <div class="form-floating mb-1">
+        <input type="text" id="email" class="form-control" name="email" placeholder="Emergency Contact" value={formData.email} required>
+        <label for="email">email</label>
+    </div>
+
+    { index == "-1" && 
+        <div class="form-floating mb-1">
+            <input type="password" id="new-password" class="form-control" name="password" autocomplete="new-password" placeholder="password" value={formData.password} required>
+            <label for="password">password</label>
+        </div>
+    }
+
+    <input type="hidden" name="index" value={index} />
+    <input type="hidden" name="id" value={formData._id} />
+
+    <div style="width: 100%; display: flex; justify-content: end; padding: 10px">    
+        <button 
+            type="submit" 
+            class="btn btn-success"
+
+            >save
+        </button>
+    </div>
+</form>
+

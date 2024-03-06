@@ -3,42 +3,31 @@ import LocationDisplay from '../../admin/partials/LocationDisplay.astro'
 import db from '../../../../lib/db'
 const formData = await Astro.request.formData();
 
-const index = formData.get('index') as string;
-const id = formData.get('id') as string;
+const id = formData.get('_id') as string;
 
 let data = Array.from(formData).reduce((acc: any, [key, value]) => {
-  acc[key] = value;
+  acc[key] = formData.get(key);
   return acc;
 }, {}) as any;
 
-const location = await db.location.getOne(id) as any;
+if (data._id) {
+  delete data._id;
+  await db.location.update(id, data);
+} else {
+  await db.location.create(data);
+}
 
 
-let updatedLocationData = {
-  address: data?.address || location.address || '',
-  personsAccess: data?.personsAccess || location.personsAccess || '',
-  emergencyContact: data?.emergencyContact || location.emergencyContact || '',
-  itemLocations: {
-    leashCarrierCrate: data?.leashCarrierCrate || location.itemLocations.leashCarrierCrate || '',
-    petFoodWaterBowlTreats: data?.petFoodWaterBowlTreats || location.itemLocations.petFoodWaterBowlTreats || '',
-    cleaningSuppliesVacuum: data?.cleaningSuppliesVacuum || location.itemLocations.cleaningSuppliesVacuum || '',
-    thermostat: data?.thermostat || location.itemLocations.thermostat || '',
-    breakerBox:   data?.breakerBox || location.itemLocations.breakerBox || '',
-    alarmPanel: data?.alarmPanel || location.itemLocations.alarmPanel || '',
-    other: data?.other || location.itemLocations.other || '',
-  },
-  pets: { ...location.pets } || {},
 
-};
 
-updatedLocationData = updatedLocationData.filter((key, value) => {
-  return value !== '';
-})  as any;
 
-location.data = updatedLocationData;
 
-console.log(location)
+// const location = await db.location.getOne(id) as any;
 
+
+
+const index = formData.get('index') as string;
+console.log(data);
 ---
 
 <LocationDisplay data={location} index={index} >

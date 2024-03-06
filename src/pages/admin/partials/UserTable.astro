@@ -1,0 +1,34 @@
+---
+import UserDisplay from "./UserDisplay.astro";
+
+
+const { data, index } = Astro.props
+
+console.log(data)
+
+export const partial= true;
+
+---
+
+
+
+
+
+<div class="accordion accordion-flush mx-auto" id="user-table">
+
+    { data.map((rowData: any, index: number) => (
+        
+            <UserDisplay data={rowData} index={index} />
+
+    )) }
+
+    <div class="accordion-item" id={`user-row-new`}>
+            <UserDisplay index={-1}>
+                Add New User
+            </UserDisplay>
+    </div>
+
+</div>
+
+
+

@@ -26,15 +26,15 @@ const petTypes = {
   goose: '🦢',
   turkey: '🦃',
   other: '🐾',
-};
+} as Record<string, string>;
 
-const petList = pets.map((pet) => (petTypes[pet.type] ?? petTypes['other']) + pet.name ).join(', ');
+const petList = pets.map((pet: {name: string, description: string, type: string}) => (petTypes[pet.type] ?? petTypes['other']) + pet.name ).join(', ');
 
 
 export const partial = true;
 ---
 
 <div id={`loc-title-${index}`} hx-swap-oob={oob} style="width: 100%; padding: 5px; display:flex; overflow-x:hidden; justify-content:space-between">
-    <h5 class="accordion-header">{data?.address}</h2>
-    <span>😐 {data?.user?.name}, {petList}</span>
+    
+    <span>{data?.user?.name ? '😐' + data?.user?.name + ', ': null}{petList}</span>
 </div>

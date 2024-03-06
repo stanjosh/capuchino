@@ -5,6 +5,7 @@ import { Visit, Location, User } from "./models/index";
 
 
 
+
 const db = {
     visit: {
         getOne: async (id: string) => {
@@ -48,7 +49,7 @@ const db = {
             return locationData;
         },
 
-        create:  async (locationData: typeof Location) => {
+        create:  async (locationData: Record<string, string>) => {
             await connectMongo();
             const newLocationData = await Location.create(locationData);
             return newLocationData;
@@ -96,7 +97,7 @@ const db = {
 
     user: {
 
-        getUser: async (id: string) => {
+        getOne: async (id: string) => {
             await connectMongo();
             const userData =  await User.findById(id);
             return userData;
@@ -108,10 +109,26 @@ const db = {
             return userData;
         },
 
-        updateUser: async (id: string, userData: any) => {
+        update: async (userData: any) => {
+            const data = {
+                data: null,
+                error: null
+            } as any;
             await connectMongo();
-            const updatedUserData =  await User.findByIdAndUpdate(id, userData, {new: true})
-            return updatedUserData;
+            try {
+                if ( userData && userData._id ) {
+                    data.data = await User.findByIdAndUpdate(userData._id, userData, {new: true})
+                } else if ( userData ) {
+                    data.data = await User.create(userData);
+                }
+            } catch (error: any) {
+                if (error.code === 11000) {
+                    data.error = 'User already exists';
+                } else {
+                    data.error = error;
+                }
+            }
+            return data;
         },
 
         search: async (searchTerm: string) => {

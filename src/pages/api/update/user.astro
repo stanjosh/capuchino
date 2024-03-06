@@ -1,0 +1,31 @@
+---
+import UserDisplay from '../../admin/partials/UserDisplay.astro'
+import db from '../../../../lib/db'
+const formData = await Astro.request.formData();
+
+let data = Array.from(formData).reduce((acc: any, [key, value]) => {
+  acc[key] = formData.get(key);
+  return acc;
+}, {}) as any;
+
+
+
+const { data: userData, error } = await db.user.update(data)
+
+let user;
+console.log(data);
+
+
+
+const index = formData.get('index') as string;
+console.log(data);
+
+---
+{ error 
+  ? <div class="alert alert-danger">{error}</div> 
+  : <UserDisplay data={userData} index={index} />
+}
+
+
+
+

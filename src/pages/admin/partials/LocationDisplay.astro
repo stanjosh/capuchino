@@ -1,25 +1,69 @@
 ---
-import LocationFormTabs from '../../admin/partials/forms/LocationFormTabs.astro'
-import LocationTitle from './LocationTitle.astro'
+import LocationInfoForm from "./forms/LocationInfoForm.astro";
+import LocationItemForm from "./forms/LocationItemForm.astro";
+import PetFormTabs from "./forms/PetFormTabs.astro";
+import PetDisplay from './PetDisplay.astro'
 
-const { location, index = 0 } = Astro.props;
+const { data, index = 0 } = Astro.props;
 
 export const partial = true;
 ---
 
 
+<div class="card accordion w-50 mx-auto my-5" id="location-table">
+  <div class="card-header">
 
-    <div class="accordion-item" id={`loc-disp-${index}`}>
-      
-        <button class="accordion-button collapsed d-flex" type="button" data-bs-toggle="collapse" data-bs-target={`#collapse-form-${index}`} aria-expanded="false" aria-controls={`collapse-form-${index}`}>
-          <LocationTitle data={location} index={index} />
-        </button>
-     
-    </div>
-    <div class="collapse" id={`collapse-form-${index}`} data-bs-parent="#location-table">
-      <div class="mx-auto p-3" style="max-width: 800px">
-        <LocationFormTabs data={location} index={index} />
+  </div>
+  <div class="card-body p-0">
+    
+    <div class="accordion accordion-flush" id={`accordion-loc-${index}`}>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target={`#collapse-info-${index}`} aria-expanded="true" aria-controls={`collapse-info-${index}-1`}>
+            <h5 class="accordion-header"><slot />{data?.address}</h2>
+
+          </button>
+        </h2>
+        <div id={`collapse-info-${index}`} class="accordion-collapse collapse" data-bs-parent={`#accordion-loc-${index}`}>
+          <div class="accordion-body">
+            <LocationInfoForm data={data} index={index} />
+            
+          </div>
+          <div class="accordion accordion-flush" id={`accordion-item-${index}`}>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target={`#collapse-items-${index}`} aria-expanded="false" aria-controls={`collapse-items-${index}`}>
+                  Items and Locations
+                </button>
+              </h2>
+              <div id={`collapse-items-${index}`} class="accordion-collapse collapse" data-bs-parent={`#accordion-item-${index}`}>
+                <div class="accordion-body">
+                  <LocationItemForm data={data} index={index} />
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target={`#collapse-pets-${index}`} aria-expanded="false" aria-controls={`collapse-pets-${index}`}>
+                  Pets
+                </button>
+              </h2>
+              <div id={`collapse-pets-${index}`} class="accordion-collapse collapse" data-bs-parent={`#accordion-item-${index}`}>
+                <div class="accordion-body">
+                  <PetFormTabs data={data} index={index}>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+
+      
     </div>
 
+
+  </div>
+  <div class="card-footer">
+  </div> 
+</div>
 
